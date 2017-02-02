@@ -1,8 +1,9 @@
-import cherrypy
+import cherrypy, os, os.path
 
-class HelloWorld(object):
+class host():
+    @cherrypy.expose
     def index(self):
-        return "LEL!"
-    index.exposed = True
+        return open("index.html")
 
-cherrypy.quickstart(HelloWorld())
+if __name__ == "__main__":
+    cherrypy.quickstart(host())
