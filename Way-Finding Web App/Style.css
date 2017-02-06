@@ -75,13 +75,12 @@ footer > a:active{ color: #40E2FC; }
 	
 footer > a:visited{ color: #40E2FC; }
 
-
-.carousel-control.left {
-  background-image: none !important;
-
-}
-.carousel-control.right {
-
-  background-image: none !important;
-
-}
+.btn-lg, .btn-group-lg > .btn{
+	
+	height: 150px;
+	width: 500px;
+	background-color: #C56F71 !important;
+	color: white !important;
+	font-size: 40px !important;
+	
+	}
