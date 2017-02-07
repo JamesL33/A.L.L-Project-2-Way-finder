@@ -1,4 +1,4 @@
-# A.L.L-Project-2-Way-finder
+# A.L.L-Project-2-Way-finder TO DO LIST
 A.L.L Project 2 creating a way-finder for Coventry University.
 
 - Add pictures from http://www.coventry.ac.uk/life-on-campus/the-university/our-buildings/buildings/ to the sidebarImages folder
