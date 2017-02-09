@@ -19,3 +19,6 @@
 - Site map.
 
 - Finish writing security algs.
+
+- Create SQLite3 database for the nodes for Dijkstra algorithm - James
+	- Write Dijkstra in python using the database
