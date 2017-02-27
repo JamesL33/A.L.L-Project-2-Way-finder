@@ -5,6 +5,22 @@ class home():
     def index(self):
         return open("index.html")
 
+    @cherrypy.expose
+    def campusNav(self):
+        return open("campusNav.html")
+
+    @cherrypy.expose
+    def covUniBuildings(self):
+        return open("covUniBuildings.html")
+
+    @cherrypy.expose
+    def ecBuildingNav(self):
+        return open("ecBuildingNav.html")
+
+    @cherrypy.expose
+    def about(self):
+        return open("about.html")
+
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__)) + os.path.sep
     config = {
