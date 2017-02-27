@@ -1,37 +1,37 @@
+import sqlite3 as sql
+import pickle
+
 class Dijkstra():
     def __init__(self):
         self.__shortestPath = []
         self.__currentNode = 0
-        self.__nodes = {"ECG-13": {"Connections": {"ECG-14": 5, "ECG-15": 7}, "Hidden": False},
-                        "ECG-14": {"Connections": {"ECG-13": 3, "ECG-15": 5}, "Hidden": False},
-                        "ECG-15": {"Connections": {"ECG-13": 2, "ECG-14": 5}, "Hidden": False},
-                        "First Floor Stairs": {"Connections": {"ECG-13": 4, "ECG-14": 5, "ECG-15": 7}, "Hidden": False},
-                        "Main Entrance": {"Connections": {"First Floor Stairs": 2}, "Hidden": False}
-                        }
+        self.__nodes = {}
 
-    def shortest_path(self, start, end):
-        node_progress = {}
-
-        for key in self.__nodes:
-            node_progress[key] = {}
-
-        while self.__currentNode != end:
-            print("Dijkstra Here")
-            break
-
-        print(node_progress)
-
-    def give_directions(self, start, end):
+    def shortestPath(self):
         pass
 
-    def get_connections(self, name):
-        for key in self.__nodes:
-            if key == name:
-                #print(len(self.__nodes[key]["Connections"]))
-                return(self.__nodes[key]["Connections"])
-        return []
+    def pickleStore(self, node, connections):
+        cur = self.conn.cursor()
+        pdata = pickle.dumps(connections, pickle.HIGHEST_PROTOCOL)
+        cur.execute(("INSERT INTO Nodes VALUES (?, ?)"), (node, pdata))
+        self.conn.commit()
+
+    def unpickleFetch(self, node):
+        try:
+            cur = self.conn.cursor()
+            cur.execute(("Select * FROM Nodes WHERE Name = (?)"), (node,))
+            currentNode = cur.fetchone()
+            print(pickle.loads((currentNode[1])))
+        except TypeError:
+            print("That node does not exist!")
+
 
 if __name__ == "__main__":
     shortPath = Dijkstra()
-    #print(shortPath.get_connections("Main Entrance"))
-    shortPath.shortest_path("ECG-15", "ECG-14")
+    try:
+        shortPath.conn = sql.connect("Nodes.sqlite3")
+        #shortPath.pickleStore("ECG-15", [1,2,3])
+        #shortPath.unpickleFetch("ECG-15")
+    finally:
+        shortPath.conn.close()
+
