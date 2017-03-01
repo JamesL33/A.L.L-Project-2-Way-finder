@@ -1,0 +1,16 @@
+[01/Mar/2017:20:42:14] ENGINE Listening for SIGTERM.
+[01/Mar/2017:20:42:14] ENGINE Bus STARTING
+[01/Mar/2017:20:42:14] ENGINE Set handler for console events.
+[01/Mar/2017:20:42:14] ENGINE Started monitor thread '_TimeoutMonitor'.
+[01/Mar/2017:20:42:14] ENGINE Serving on http://127.0.0.1:8080
+[01/Mar/2017:20:42:14] ENGINE Bus STARTED
+[01/Mar/2017:20:42:39] ENGINE Console event 2: shutting down bus
+[01/Mar/2017:20:42:39] ENGINE Removed handler for console events.
+[01/Mar/2017:20:42:39] ENGINE Bus STOPPING
+[01/Mar/2017:20:42:39] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 8080)) shut down
+[01/Mar/2017:20:42:39] ENGINE Handler for console events already off.
+[01/Mar/2017:20:42:39] ENGINE Stopped thread '_TimeoutMonitor'.
+[01/Mar/2017:20:42:39] ENGINE Bus STOPPED
+[01/Mar/2017:20:42:39] ENGINE Bus EXITING
+[01/Mar/2017:20:42:39] ENGINE Waiting for child threads to terminate...
+[01/Mar/2017:20:42:39] ENGINE Bus EXITED
