@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>Navigation System</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">      
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>  
+  </head>
+  <body>
+  	<!-- Google Maps Api-->
+  	<div id="map"></div>
+  	<script>
+		var map;
+		var centerPoint = {lat: 52.407565, lng: -1.510876};
+
+//centerPoint = {lat: 52.407565, lng: -1.510876};
+  	  	
+  	  	//navigator.geolocation.getCurrentPosition(function(position))
+  	  	//{
+  	  		//console.log(position.coords.latitude, position.coords.longitude)
+  	  	//};
+  		
+  		function initMap() {
+
+  			map = new google.maps.Map(document.getElementById('map'), {
+  				center: centerPoint,
+  				zoom: 16
+  	    	});              
+
+        var marker = new google.maps.Marker({
+          position: centerPoint,
+          map: map
+          });
+
+        var infoWindow = new google.maps.InfoWindow({map: map});
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }      
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }        
+  	}
+
+  	</script>
+  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOKZ9KnQ0OJPf16yB6AnLcFEHdty1rGG4&callback=initMap"
+  	async defer></script>
+  	<!--End of Google maps api-->
+  </body>
+</html>
