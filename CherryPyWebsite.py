@@ -21,6 +21,10 @@ class home():
     def about(self):
         return open("about.html")
 
+    @cherrypy.expose
+    def campusMap(self):
+        return open("campusMap.html")
+
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__)) + os.path.sep
     config = {
