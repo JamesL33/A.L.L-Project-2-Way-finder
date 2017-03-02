@@ -18,30 +18,26 @@
     </style>  
   </head>
   <body>
-  	<!-- Google Maps Api-->
-  	<div id="map"></div>
-  	<script>
-		var map;
-		var centerPoint = {lat: 52.407565, lng: -1.510876};
+    <!-- Google Maps Api-->
+    <div id="map"></div>
+    <script>
+    var map;
+    var centerPoint = {lat: 52.407565, lng: -1.510876};
 
-//centerPoint = {lat: 52.407565, lng: -1.510876};
-  	  	
-  	  	//navigator.geolocation.getCurrentPosition(function(position))
-  	  	//{
-  	  		//console.log(position.coords.latitude, position.coords.longitude)
-  	  	//};
-  		
-  		function initMap() {
+      function initMap() 
+      {
 
-  			map = new google.maps.Map(document.getElementById('map'), {
-  				center: centerPoint,
-  				zoom: 16
-  	    	});              
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: centerPoint,
+          zoom: 16
+          });           
+
+         var directionsService = new google.maps.DirectionsService();   
 
         var marker = new google.maps.Marker({
           position: centerPoint,
           map: map
-          });
+          });  
 
         var infoWindow = new google.maps.InfoWindow({map: map});
 
@@ -61,19 +57,22 @@
         } else {
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
-        }      
+        }  
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      }   
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) 
+      {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
-      }        
-  	}
+      }     
 
-  	</script>
-  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOKZ9KnQ0OJPf16yB6AnLcFEHdty1rGG4&callback=initMap"
-  	async defer></script>
-  	<!--End of Google maps api-->
+    </script>
+    <script type="text/javascript" src="gmaps.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOKZ9KnQ0OJPf16yB6AnLcFEHdty1rGG4&callback=initMap"
+    async defer></script>
+    <!--End of Google maps api-->
   </body>
 </html>
