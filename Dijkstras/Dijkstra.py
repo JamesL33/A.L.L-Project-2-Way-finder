@@ -3,19 +3,48 @@ import pickle
 
 
 class Dijkstra:
+
     def __init__(self, db):
         self.conn = sql.connect(db)
         self.cur = self.conn.cursor()
-        self.__progress = {}
+        self.__graph = {}
+        self.__visited = []
 
     def short_path(self, graph, start, end):
         # progress = {node: [previously visited nodes], distance}
-        self.__progress[start] = [["ECG-15"], 0]
+        self.__graph[start] = [["ECG-15"], 0]
         del graph[start]
         for key in graph:
-            self.__progress[key] = [[], float("inf")]
+            self.__graph[key] = [[], float("inf")]
 
-        print(self.__progress)
+        currentNode = start
+        self.__visited.append(currentNode)
+
+        while True:
+            if currentNode == end:
+                print(self.__graph[currentNode])
+                break
+            connections = self.fetch_connections(currentNode)
+            for key in connections:
+                self.__graph[key][0].append(currentNode)
+                self.__graph[key][1] = connections[key]
+
+            for index in self.__visited:
+                try:
+                    del connections[index]
+                except KeyError:
+                    pass
+
+            print(self.__graph)
+            currentNode = self.get_closest(connections)
+            currentNode = currentNode[0]
+            print(currentNode)
+
+    def get_closest(self, connections):
+        closest = []
+        closest.append((min(connections, key=connections.get)))
+        closest.append(connections[closest[0]])
+        return(closest)
 
     def pickle_store(self, node, connections):
         cur = self.conn.cursor()
@@ -75,7 +104,7 @@ if __name__ == "__main__":
         # shortPath.pickleStore("ECG-15", {"ECG-13": 3, "ECG-14": 6})
         # shortPath.pickleStore("ECG-27", {"Main Entrance": 1})
         # shortPath.pickleStore("First Floor Stairs", ["ECG-15"])
-        print(shortPath.short_path(shortPath.return_graph(), "ECG-15", "First Floor Stairs"))
+        print(shortPath.short_path(
+            shortPath.return_graph(), "ECG-15", "ECG-13"))
     finally:
         shortPath.conn.close()
-
