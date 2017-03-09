@@ -20,15 +20,13 @@
   </div>
   <script>
     var engineeringCenter = [52.405482, -1.501099];
-    var home = [52.408635, -1.496508];
-
-    var dest = document.getElementById("destinations");
-    var selectedDestination = dest.options[dest.selectedIndex].value.split(" ");
+    var home = [52.408635, -1.496508];   
 
     GMaps.geolocate({
     	success: function(position) {
           var myLat = position.coords.latitude;
           var myLong = position.coords.longitude;
+
           var map = new GMaps({
             el: '#map',
             lat: myLat, 
@@ -37,6 +35,9 @@
           });
 
         $('#start_travel').click(function(e){
+        	$('#instructions').empty();
+        	var dest = document.getElementById("destinations");
+    		var selectedDestination = dest.options[dest.selectedIndex].value.split(" ");
         	e.preventDefault();
         	map.travelRoute({
           	  origin: [myLat, myLong],

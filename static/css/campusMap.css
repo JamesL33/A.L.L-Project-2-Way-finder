@@ -12,3 +12,8 @@ html, body {
 {
 	height: 100%
 }
+
+ul#instructions
+{
+	list-style-type: circle;
+}
