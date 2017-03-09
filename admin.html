@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Modern effects and styles for off-canvas navigation with CSS transitions and SVG animations using Snap.svg" />
+		<meta name="keywords" content="sidebar, off-canvas, menu, navigation, effect, inspiration, css transition, SVG, morphing, animation" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/menu_sideslide.css" />
+		<style type="text/css">
+		@import url("static/css/normalize.css");
+        @import url("static/css/demo.css");
+        @import url("static/css/menu_sideslide.css");
+        @import url("static/css/normalize.css");
+		div.absolute {
+    position: absolute;
+    left: 818px;
+		}
+		div.absolute2 {
+    position: absolute;
+    left: 824px;
+		}
+		div.absolute3 {
+    position: absolute;
+    left: 940px;
+		}
+        </style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="menu-wrap">
+				<nav class="menu">
+					<div class="icon-list"><br>
+								<!-- Button Declarations -->
+								<a href="index"><em class="fa fa-fw fa-star-o"></em><span>Coventry University</span></a> <br>
+								<a href="about"><em class="fa fa-fw fa-envelope-o"></em><span>About</span></a> <br>
+                				<a href="ecBuildingNav"><em class="fa fa-fw fa-bell-o"></em><span>EEC Building Navigation</span></a> <br>
+								<a href="campusNav"><em class="fa fa-fw fa-bell-o"></em><span>Campus Navigation</span></a> <br>
+								<a href="covUniBuildings"><em class="fa fa-fw fa-envelope-o"></em><span>Buildings on Campus</span></a> <br>
+								<a href="#"><em class="fa fa-fw fa-envelope-o"></em><span>Administration</span></a> <br></div>
+				</nav>
+				<button class="close-button" id="close-button">Close Menu</button>
+			</div>
+			<button class="menu-button" id="open-button">Open Menu</button>
+		  <script type="text/javascript" src="static/js/classie.js"></script>
+			<script type="text/javascript" src="static/js/main.js"></script>
+			<div class="content-wrap">
+				<div class="content">
+					<header class="codrops-header">	
+                    <b>Administation Page</b><br><br> 
+                      	<form action="" method="post">
+  							<div class = "absolute"><center>Username: <input type="text"><br></center></div><br><br>
+  						 	<div class = "absolute2"><center>Password: <input type="password"><br></center></div><br><br>
+  						<div class = "absolute3"><input type="submit" value="Submit"></div>
+                        </form>		  
+					</header>
+					<!-- Related demos -->
+					<section class="related"> </section>
+			  </div>
+			</div><!-- /content-wrap -->
+		</div><!-- /container -->
+		<script src="js/classie.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
