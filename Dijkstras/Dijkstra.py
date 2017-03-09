@@ -10,24 +10,49 @@ class Dijkstra:
         self.__graph = {}
         self.__visited = []
 
-    def short_path(self, graph, start, end):
+    def start(self, graph, start, end):
         # progress = {node: [previously visited nodes], distance}
         self.__graph[start] = [["ECG-15"], 0]
-        del graph[start]
+        #del graph[start]
         for key in graph:
-            self.__graph[key] = [[], float("inf")]
+            if key != start:
+                self.__graph[key] = [[], float("inf")]
 
         currentNode = start
-        self.__visited.append(currentNode)
+        self.short_path(currentNode, end)
 
-        while True:
-            if currentNode == end:
-                print(self.__graph[currentNode])
-                break
+    def short_path(self, currentNode, end):
+        if currentNode == end:
+            print("Done")
+            print(self.__graph[currentNode])
+        elif currentNode in self.__visited:
+            notUsed = {}
+            print("Already Used This Node")
             connections = self.fetch_connections(currentNode)
+            print(connections, self.__visited, currentNode)
+            for key in connections:
+                if len(connections) != 0:
+                    if key not in self.__visited:
+                        notUsed[key] = connections[key]
+
+            if len(notUsed) != 0:
+                currentNode = self.get_closest(notUsed)
+                currentNode = currentNode[0]
+                self.__visited.append(currentNode)
+                self.short_path(currentNode, end)
+            else:
+                print("There is no route")
+
+        else:
+            self.__visited.append(currentNode)
+            connections = self.fetch_connections(currentNode)
+            print(connections, self.__visited)
+
             for key in connections:
                 self.__graph[key][0].append(currentNode)
-                self.__graph[key][1] = connections[key]
+                if self.__graph[key][1] == float("inf"):
+                    self.__graph[key][1] = 0
+                self.__graph[key][1] = (self.__graph[key][1] + connections[key])
 
             for index in self.__visited:
                 try:
@@ -35,10 +60,10 @@ class Dijkstra:
                 except KeyError:
                     pass
 
-            print(self.__graph)
             currentNode = self.get_closest(connections)
             currentNode = currentNode[0]
-            print(currentNode)
+            self.__visited.append(currentNode)
+            self.short_path(currentNode, end)
 
     def get_closest(self, connections):
         closest = []
@@ -99,12 +124,12 @@ class Dijkstra:
 if __name__ == "__main__":
     shortPath = Dijkstra("Nodes.sqlite3")
     try:
-        # shortPath.pickleStore("ECG-13", {"ECG-14": 5, "ECG-15": 3})
-        # shortPath.pickleStore("ECG-14", {"ECG-13": 3, "ECG-15": 6})
-        # shortPath.pickleStore("ECG-15", {"ECG-13": 3, "ECG-14": 6})
-        # shortPath.pickleStore("ECG-27", {"Main Entrance": 1})
-        # shortPath.pickleStore("First Floor Stairs", ["ECG-15"])
-        print(shortPath.short_path(
-            shortPath.return_graph(), "ECG-15", "ECG-13"))
+        # shortPath.pickle_store("ECG-13", {"ECG-14": 5, "ECG-15": 3})
+        # shortPath.pickle_store("ECG-14", {"ECG-13": 3, "ECG-15": 6})
+        # shortPath.pickle_store("ECG-15", {"ECG-13": 3, "ECG-14": 6, "First Floor Stairs": 4})
+        # shortPath.pickle_store("ECG-27", {"Main Entrance": 1})
+        # shortPath.pickle_store("First Floor Stairs", {"ECG-15": 4})
+        # shortPath.pickle_store("Main Entrance", {"ECG-27": 1})
+        shortPath.start(shortPath.return_graph(), "ECG-15", "First Floor Stairs")
     finally:
         shortPath.conn.close()
