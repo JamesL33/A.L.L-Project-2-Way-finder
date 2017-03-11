@@ -1,4 +1,4 @@
-import cherrypy, os, os.path
+import cherrypy, os, os.path, security
 
 class home():
     @cherrypy.expose
@@ -24,6 +24,19 @@ class home():
     @cherrypy.expose
     def campusMap(self):
         return open("campusMap.html")
+
+    @cherrypy.expose
+    def admin(self,username=None,userpassword=None):
+        if username is None or userpassword is None:
+            return open("admin.html")
+        with security.Security() as password_check:
+            try:
+                password_check.log_on(username,userpassword)
+                # replace with successful page
+                return open("about.html")
+            except ValueError:
+                # replace with unsuccessful page
+                return open("covUniBuildings.html")
 
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__)) + os.path.sep
