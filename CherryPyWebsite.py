@@ -27,16 +27,19 @@ class home():
 
     @cherrypy.expose
     def admin(self,username=None,userpassword=None):
+        if cherrypy.session.get('loggedon'):
+            return open("about.html")
         if username is None or userpassword is None:
             return open("admin.html")
         with security.Security() as password_check:
             try:
                 password_check.log_on(username,userpassword)
                 # replace with successful page
+                cherrypy.session["loggedon"] = True
                 return open("about.html")
             except ValueError:
                 # replace with unsuccessful page
-                return open("covUniBuildings.html")
+                return open("adminFailLogin.html")
 
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__)) + os.path.sep
@@ -52,6 +55,8 @@ if __name__ == "__main__":
     },
     '/':{
         'tools.staticdir.root' : current_dir,
+        'tools.sessions.on' : True,
+        'tools.sessions.timeout' : 15,
     },
     '/static':{
         'tools.staticdir.on' : True,
