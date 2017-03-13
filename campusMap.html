@@ -6,6 +6,7 @@
   <script src="http://maps.google.com/maps/api/js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="static/js/gmaps.js"></script>
+  <script src="static/js/sql.js"></script>
 </head>
 <body>
   <div id="map"></div>
@@ -19,8 +20,31 @@
     </ul>
   </div>
   <script>
+  
+  	var alan_berry = [52.408141, -1.506584];
+  	var alma = [52.410193, -1.500576];
+  	var armstrong = [52.406908, -1.499888];
+  	var bugatti = [52.407662, -1.503825];
+  	var charles_ward = [52.408635, -1.504771];
     var engineeringCenter = [52.405482, -1.501099];
-    var home = [52.408635, -1.496508];   
+    var ellen = [52.406799, -1.504689];
+    var george_elliot = [52.407812, -1.504942];
+    var graham_sutherland = [52.407231, -1.502662];
+    var hub = [52.407283, -1.504535];
+    var jag = [52.406683, -1.501497];
+    var james = [52.407626, -1.503872];
+    var library = [52.406062, -1.501317]; 
+    var maurice = [52.407833, -1.503738];
+    var multi_car = [52.406636, -1.499889];
+    var priory = [52.408497, -1.506440];
+    var rich = [52.406827, -1.505148];
+    var sir_john = [52.405529, -1.505479];
+    var sir_will = [52.407121, -1.499938];
+    var student_center = [52.404736, -1.500288];
+    var whitefriars = [52.405411, -1.501189];
+    var william_morris = [52.406431, -1.501569];
+    var sports = [52.406091, -1.503946];
+    
 
     GMaps.geolocate({
     	success: function(position) {
@@ -40,8 +64,8 @@
     		var selectedDestination = dest.options[dest.selectedIndex].value.split(" ");
         	e.preventDefault();
         	map.travelRoute({
-          	  origin: [myLat, myLong],
-          	  destination: selectedDestination,
+          	  origin: alma,
+          	  destination: test,
           	  travelMode: 'walking',  
           	  step: function(e){
                 $('#instructions').append('<li>'+e.instructions+'</li>');
