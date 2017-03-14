@@ -130,6 +130,12 @@ if __name__ == "__main__":
         # shortPath.pickle_store("ECG-27", {"Main Entrance": 1})
         # shortPath.pickle_store("First Floor Stairs", {"ECG-15": 4})
         # shortPath.pickle_store("Main Entrance", {"ECG-27": 1})
-        shortPath.start(shortPath.return_graph(), "ECG-15", "First Floor Stairs")
+        shortPath.pickle_store("A", {"B": 5, "C": 6})
+        shortPath.pickle_store("B", {"A": 5, "D": 6})
+        shortPath.pickle_store("C", {"A": 6, "D": 6})
+        shortPath.pickle_store("D", {"B": 6, "C": 6, "A": 10, "E": 2})
+        shortPath.pickle_store("E", {"D": 2})
+
+        # shortPath.start(shortPath.return_graph(), "ECG-15", "First Floor Stairs")
     finally:
         shortPath.conn.close()
