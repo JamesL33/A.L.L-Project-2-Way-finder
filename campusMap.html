@@ -3,13 +3,13 @@
 <head>
   <link rel="stylesheet" type="text/css" href="static/css/campusMap.css">
   <title></title>
-  <script src="http://maps.google.com/maps/api/js"></script>
+  <script src="https://maps.google.com/maps/api/js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="static/js/gmaps.js"></script>
 </head>
 <body>
   <div id="map"></div>
-  <div id="selection">
+  <div id="selection" style="overflow-y: scroll; ">
   	<select id="destinations">
   		<option value="52.405482 -1.501099">Engineering Building</option>
   		<option value="52.408635 -1.496508">Home</option>
@@ -45,6 +45,7 @@
 	var whitefriars = [52.405411, -1.501189];
 	var william_morris = [52.406431, -1.501569];
 	var sports = [52.406091, -1.503946];
+  var test = [52.408330, -1.518017];
     
 
     GMaps.geolocate({
@@ -62,11 +63,11 @@
         $('#start_travel').click(function(e){
         	$('#test').empty();
         	var dest = document.getElementById("destinations");
-    		var selectedDestination = dest.options[dest.selectedIndex].value.split(" ");
+    		  var selectedDestination = dest.options[dest.selectedIndex].value.split(" ");
         	e.preventDefault();
         	map.travelRoute({
-          	  origin: rich,
-          	  destination: alma,
+          	  origin: test,
+          	  destination: engineeringCenter,
           	  travelMode: 'walking',  
           	  step: function(e){
                 $('#test').append('<li>'+e.instructions+'</li>');

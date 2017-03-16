@@ -1,6 +1,7 @@
 #map 
 {
 	height: 100%;
+	position: relative;
 }      
 html, body {
 	height: 90%;
@@ -10,10 +11,5 @@ html, body {
 
 #selection
 {
-	height: 100%
-}
-
-ul#instructions
-{
-	list-style-type: circle;
+	height: 20%;
 }
