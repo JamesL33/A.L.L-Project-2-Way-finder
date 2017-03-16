@@ -8,7 +8,7 @@ body,
 }
 
 .container {
-	background-color: #9848BD !important;
+	background-color: #044CB7;
 }
 
 .menu-wrap a {
@@ -27,7 +27,7 @@ body,
 
 .content {
 	position: relative;
-	background: #9848BD;
+	background: #044CB7;
 }
 
 .content::before {
