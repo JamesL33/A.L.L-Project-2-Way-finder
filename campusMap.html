@@ -2,30 +2,31 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="static/css/campusMap.css">
-  <title></title>
+  <title>Campus Map</title>
   <script src="https://maps.google.com/maps/api/js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="static/js/gmaps.js"></script>
-  
+  <script src="static/js/gmaps.js"></script> 
 </head>
 <body>
-					<div class="menu-wrap">
-						<nav class="menu">
-						  <div class="icon-list"><br>
-								<!-- Button Declarations -->
-              					<a href="index"><em class="fa fa-fw fa-star-o"></em><span>Coventry University</span></a> <br>
-								<a href="about"><em class="fa fa-fw fa-envelope-o"></em><span>About</span></a> <br>
-                				<a href="ecBuildingNav"><em class="fa fa-fw fa-bell-o"></em><span>EEC Building Navigation</span></a> <br>
-								<a href="campusNav"><em class="fa fa-fw fa-bell-o"></em><span>Campus Navigation</span></a> <br>
-								<a href="covUniBuildings"><em class="fa fa-fw fa-envelope-o"></em><span>Buildings on Campus</span></a> <br>
-								<a href="#"><em class="fa fa-fw fa-envelope-o"></em><span>Administration</span></a> <br>
-							</div>
-						</nav>
-  					<button class="close-button" id="close-button">Close Menu</button>
-					</div>
-<button class="menu-button" id="open-button">Open Menu</button>
-<script type="text/javascript" src="static/js/classie.js"></script>
-<script type="text/javascript" src="static/js/main.js"></script>
+      <div class="menu-wrap">
+          <nav class="menu">
+            <div class="icon-list"><br>
+                  <!-- Button Declarations -->
+                  <a href="index"><em class=""></em><span>Coventry University</span></a> <br>
+                  <a href="about"><em class=""></em><span>About</span></a> <br>
+                  <a href="ecBuildingNav"><em class=""></em><span>EEC Building Navigation</span></a> <br>
+                  <a href="campusNav"><em class=""></em><span>Campus Navigation</span></a> <br>
+                  <a href="covUniBuildings"><em class=""></em><span>Buildings on Campus</span></a> <br>
+                  <a href="admin"><em class=""></em><span>Administration</span></a> <br>
+              </div>
+          </nav>
+      <button class="close-button" id="close-button">Close Menu</button>
+      </div>
+	<button class="menu-button" id="open-button">Open Menu</button>
+	<script type="text/javascript" src="static/js/classie.js"></script>
+	<script type="text/javascript" src="static/js/main.js"></script>
+
+  <!-- Eds map code -->
   <div id="map"></div>
   <div id="selection" style="overflow-y: scroll; ">
   	<select id="destinations">
@@ -36,7 +37,6 @@
     
     	<ol id="test"></ol>
     
-    </ul>
   </div>
   <script>
   
@@ -111,6 +111,5 @@
       }
     });
   </script>
-  
 </body>
 </html>
