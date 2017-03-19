@@ -110,7 +110,10 @@ section {
 	font-size: 1em;
 	max-width: 1200px;
 	margin: 3em auto 5em;
-	padding: 2em 10em 0;
+	padding-top: 1em;
+	padding-right: 5em;
+	padding-left: 5em;
+	padding-bottom: 1em;
 }
 
 .codrops-demos > a {
@@ -185,6 +188,20 @@ body #cdawrap {
 	bottom: auto;
 }
 
+.test-box{
+	display: inline-block;
+	margin: 0.75em;
+	padding: 1.35em 1.1em;
+	width: 15em;
+	background: #fffce1;
+	outline: none;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 800;
+	border-radius: 20px/50px;	
+}
+
 @media screen and (max-width: 40em) {
 	body {
 		font-size: 80%;
@@ -210,5 +227,4 @@ body #cdawrap {
 	.codrops-icon span {
 		display: none;
 	}
-
 }
