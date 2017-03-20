@@ -25,8 +25,8 @@ class Dijkstra:
             while pred != None:
                 path.append(pred)
                 pred = predecessors.get(pred, None)
-            print(
-                "shortest path: "+str((path[::-1]))+" cost="+str(distances[end]))  # Print the shortest path in reverse. This show the route taken.
+            # print("shortest path: "+str((path[::-1]))+" cost="+str(distances[end]))  # Print the shortest path in reverse. This show the route taken.
+            self.give_directions(path[::-1], str(distances[end]))
         else:
             if not visited:
                 distances[start] = 0
@@ -43,7 +43,7 @@ class Dijkstra:
                     unvisited[node] = distances.get(node, float("inf"))
             nextNode = min(unvisited, key=unvisited.get)
             self.dijkstra(
-                graph, nextNode, end, visited, distances, predecessors) # Recursive call 
+                graph, nextNode, end, visited, distances, predecessors) # Recursive call
 
     def return_graph(self):
         ''' Returns the graph needed for the dijkstra function. This function collects the graph from the sqlite3 database '''
@@ -90,6 +90,13 @@ class Dijkstra:
             # If "node" is not in the sqlite3 database then notify the user.
             print("That node does not exist!")
 
+    def give_directions(self, path, cost):
+        path = (list(enumerate(path, start = 1)))
+
+        for node in path:
+            print("{0}: Go to {1}".format(node[0], node[1]))
+
+        print("The cost of this journey is: " + cost)
 
 if __name__ == "__main__":
     shortPath = Dijkstra("Nodes.sqlite3")
