@@ -323,6 +323,12 @@ button:focus {
 	.menu-wrap {
 		width: 220px;	
 	}
+	
+	.menu-image{
+	height: 60%;
+	width: 60%;	
+}
+
 }
 
 @media screen and (max-width: 25em) {

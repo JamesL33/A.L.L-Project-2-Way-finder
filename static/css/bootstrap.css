@@ -245,6 +245,11 @@ body,
 	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 }
 
+.menu-image{
+	height: 80%;
+	width: 80%;	
+}
+
 .menu, 
 .icon-list {
 	height: 100%;
@@ -322,6 +327,12 @@ body,
 	.menu-wrap {
 		width: 220px;	
 	}
+	
+	.menu-image{
+	height: 60%;
+	width: 60%;	
+}
+	
 }
 
 @media screen and (max-width: 25em) {
