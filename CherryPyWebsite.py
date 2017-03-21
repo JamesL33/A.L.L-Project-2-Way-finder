@@ -1,4 +1,4 @@
-import cherrypy, os, os.path, security
+import cherrypy, os, os.path, security, Dijkstra
 
 class home():
     @cherrypy.expose
@@ -41,6 +41,14 @@ class home():
                 # replace with unsuccessful page
                 return open("adminFailLogin.html")
 
+    @cherrypy.expose
+    def indoorNav(self, start="Main Entrance", end="ECG-15"): # todo: Make start and end be passed by html form
+        try:
+            shortPath = Dijkstra.Dijkstra("Nodes.sqlite3")
+            print(shortPath.dijkstra(shortPath.return_graph(), start, end)) # todo: format and print directions on webpage
+        except TypeError as e:
+            print(e)
+
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__)) + os.path.sep
     config = {
@@ -64,4 +72,3 @@ if __name__ == "__main__":
     }
     }
 cherrypy.quickstart(home(), '/', config)
-
