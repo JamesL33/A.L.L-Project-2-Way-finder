@@ -42,12 +42,16 @@ class home():
                 return open("adminFailLogin.html")
 
     @cherrypy.expose
-    def indoorNav(self, start="Main Entrance", end="ECG-15"): # todo: Make start and end be passed by html form
-        try:
-            shortPath = Dijkstra.Dijkstra("Nodes.sqlite3")
-            print(shortPath.dijkstra(shortPath.return_graph(), start, end)) # todo: format and print directions on webpage
-        except TypeError as e:
-            print(e)
+    def indoorNav(self, start=None, end=None): # todo: Make start and end be passed by html form
+        if start is None or end is None:
+            return open("indoorNav.html")
+        else:
+            try:
+                shortPath = Dijkstra.Dijkstra("Nodes.sqlite3")
+                shortPath.dijkstra(shortPath.return_graph(), start, end) # todo: format and print directions on webpage
+                return open("indoorNav.html")
+            except TypeError as e:
+                print(e)
 
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__)) + os.path.sep
