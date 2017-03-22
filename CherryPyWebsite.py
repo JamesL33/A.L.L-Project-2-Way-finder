@@ -48,8 +48,7 @@ class home():
         else:
             try:
                 shortPath = Dijkstra.Dijkstra("Nodes.sqlite3")
-                shortPath.dijkstra(shortPath.return_graph(), start, end) # todo: format and print directions on webpage
-                return open("indoorNav.html")
+                return str((shortPath.dijkstra(shortPath.return_graph(), start, end))) # todo: format and print directions on webpage
             except TypeError as e:
                 print(e)
 

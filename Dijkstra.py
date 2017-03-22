@@ -25,7 +25,8 @@ class Dijkstra:
             while pred != None:
                 path.append(pred)
                 pred = predecessors.get(pred, None)
-            self.give_directions(path[::-1], str(distances[end]))
+            # self.give_directions(path[::-1], str(distances[end]))
+            return (path[::-1], str(distances[end]))
         else:
             if not visited:
                 distances[start] = 0
@@ -41,7 +42,7 @@ class Dijkstra:
                 if node not in visited:
                     unvisited[node] = distances.get(node, float("inf"))
             nextNode = min(unvisited, key=unvisited.get)
-            self.dijkstra(graph, nextNode, end, visited, distances, predecessors) # Recursive call
+            return self.dijkstra(graph, nextNode, end, visited, distances, predecessors) # Recursive call
 
     def return_graph(self):
         ''' Returns the graph needed for the dijkstra function. This function collects the graph from the sqlite3 database '''
@@ -96,8 +97,8 @@ class Dijkstra:
 
         print("The cost of this journey is: " + cost)
 
-# if __name__ == "__main__":
-#     shortPath = Dijkstra("Nodes.sqlite3")
+if __name__ == "__main__":
+    shortPath = Dijkstra("Nodes.sqlite3")
 
     # Test graph
     # shortPath.dijkstra(shortPath.return_graph(), "A", "E")
@@ -107,7 +108,7 @@ class Dijkstra:
     # shortPath.pickle_store("D", {"A": 10, "B": 6, "C": 6, "E": 2})
     # shortPath.pickle_store("E", {"D": 2})
 
-    # print(shortPath.dijkstra(shortPath.return_graph(), "Main Entrance", "ECG-15"))
+    print(shortPath.dijkstra(shortPath.return_graph(), "Main Entrance", "ECG-15"))
     # shortPath.pickle_store("ECG-13", {"ECG-14": 5, "ECG-15": 5})
     # shortPath.pickle_store("ECG-14", {"ECG-15": 6, "ECG-13": 5})
     # shortPath.pickle_store("ECG-15", {"ECG-13": 5, "ECG-14": 6})
