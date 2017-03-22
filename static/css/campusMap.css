@@ -15,14 +15,13 @@ html, body {
 
 #selection
 {
-	height: 20%;
-	position: relative;
+	height: 25%;
+	background-color: #044CB7;
 }
 
 .content {
 	
 	background-color: #044CB7 !important;
-	
 	
 	}
 
