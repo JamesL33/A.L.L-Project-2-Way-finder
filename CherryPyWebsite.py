@@ -54,6 +54,12 @@ class home():
     def indoorNav(self, start=None, end=None):
         if start is None or end is None:
             return open("indoorNav.html")
+        if start == "" and end == "":
+            return open("indoorNav.html") 
+        elif end == "":
+            return "You can't travel nowhere?"
+        elif start == "":
+            return "You are not nowhere! Where are you starting your travels"
         else:
             try:
                 shortPath = Dijkstra.Dijkstra("Nodes.sqlite3")
@@ -76,7 +82,7 @@ class home():
                 return(str(doc))
 
             except TypeError as e:
-                print(e)
+                return e
 
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__)) + os.path.sep
