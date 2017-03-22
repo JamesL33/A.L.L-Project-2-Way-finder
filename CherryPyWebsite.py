@@ -3,7 +3,6 @@ import os
 import os.path
 import security
 import Dijkstra
-
 import dominate
 from dominate.tags import *
 
@@ -63,7 +62,7 @@ class home():
 
                 # with doc.head:
                 #     link(rel='stylesheet', href='style.css')
-                #     script(type='text/javascript', src='script.js')
+                #     script(type='text/javascript', src='script.js') # Will be uncommented when i start adding styles to indoor nav page
 
                 with doc:
                     with div(id='header').add(ol()):
@@ -72,13 +71,10 @@ class home():
 
                     with div():
                         attr(cls='body')
-                        p("The cost of this journey is {0}".format(
-                            shortPath.dijkstra(shortPath.return_graph(), start, end)[1]))
+                        p("The cost of this journey is {0}".format(shortPath.dijkstra(shortPath.return_graph(), start, end)[1]))
 
                 return(str(doc))
 
-                # return str((shortPath.dijkstra(shortPath.return_graph(),
-                # start, end))) # todo: format and print directions on webpage
             except TypeError as e:
                 print(e)
 
