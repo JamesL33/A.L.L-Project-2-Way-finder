@@ -100,7 +100,7 @@
   <!-- Eds map code -->
   <div id="map"></div>
   <div id="selection" style="overflow-y: scroll; ">    
-  	<ol id="test"></ol>    
+  	<ol id="list_of_directions"></ol>    
   </div>
   <script>    
 
@@ -127,7 +127,7 @@
 				disableDefaultUI: true
           	});
 
-        	$('#test').empty();
+        	$('#list_of_directions').empty();
         	var current_location = document.getElementById("list1");
         	var destination = document.getElementById("list2");
     		var location = current_location.options[current_location.selectedIndex].value.split(" ");
@@ -144,8 +144,8 @@
           	  destination: selectedDestination,
           	  travelMode: 'walking',  
           	  step: function(e){
-                $('#test').append('<li>'+e.instructions+'</li>');
-                $('#test li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
+                $('#list_of_directions').append('<li>'+e.instructions+'</li>');
+                $('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
                   map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
                   map.drawPolyline({
                     path: e.path,
