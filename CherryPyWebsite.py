@@ -66,14 +66,13 @@ class home():
 
                 doc = dominate.document(title='Dominate your HTML')
 
-                # with doc.head:
-                #     link(rel='stylesheet', href='style.css')
-                #     script(type='text/javascript', src='script.js') # Will be uncommented when i start adding styles to indoor nav page
+                with doc.head:
+                    link(rel='stylesheet', href='indoorNav.css')
 
                 with doc:
                     with div(id='header').add(ol()):
                         for i in shortPath.dijkstra(shortPath.return_graph(), start, end)[0]:
-                            li(a(i.title(), href='/%s.html' % i))
+                            li(a(i.title()))
 
                     with div():
                         attr(cls='body')
