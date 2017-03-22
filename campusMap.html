@@ -84,8 +84,11 @@
 									</select>
 								</td></tr>
                                 </tbody></table>
+
 							<a href="#" id="start_travel" class="codrops-demos a test-box"><font color = "black">GO</font></a>
-                            </form></center>                 
+                            </form></center>  
+                            </form></center>
+
                   
               </div>
           </nav>
@@ -96,15 +99,8 @@
 
   <!-- Eds map code -->
   <div id="map"></div>
-  <div id="selection" style="overflow-y: scroll; ">
-  	<select id="destinations">
-  		<option value="52.405482 -1.501099">Engineering Building</option>
-  		<option value="52.408635 -1.496508">Home</option>
-	</select>
-	<a href="#" id="start_travel">GO</a>
-    
-    	<ol id="test"></ol>
-    
+  <div id="selection" style="overflow-y: scroll; ">    
+  	<ol id="test"></ol>    
   </div>
   <script>    
 
@@ -122,6 +118,15 @@
           });
 
         $('#start_travel').click(function(e){
+
+        	var map = new GMaps({
+            	el: '#map',
+            	lat: myLat, 
+            	lng: myLong,
+            	zoom: 17,
+				disableDefaultUI: true
+          	});
+
         	$('#test').empty();
         	var current_location = document.getElementById("list1");
         	var destination = document.getElementById("list2");
@@ -144,7 +149,7 @@
                   });
                 });
               }
-          	});          	
+          	});            	     	
         });
       },
       error: function(error) {

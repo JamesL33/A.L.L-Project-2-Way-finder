@@ -16,6 +16,7 @@ html, body {
 #selection
 {
 	height: 20%;
+	position: relative;
 }
 
 .content {
