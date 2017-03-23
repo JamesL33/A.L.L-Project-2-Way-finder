@@ -28,27 +28,27 @@
 
 										<option value="">My current GPS location</option>
 										<option value="52.408141 -1.506584">Alan Berry </option>
-                                        <option value="52.410193 -1.500576">Alma </option>
+                    <option value="52.410193 -1.500576">Alma </option>
 										<option value="52.406908 -1.499888">Armstrong Siddeley</option>
 										<option value="52.407662 -1.503825">Bugatti</option>
-                                        <option value="52.408635 -1.504771">Charles Ward</option>
+                    <option value="52.408635 -1.504771">Charles Ward</option>
 										<option value="52.405482 -1.501099">EEC</option>
-                                        <option value="52.406799 -1.504689">Ellen Terry</option>
-                                        <option value="52.407812 -1.504942">George Eliot</option>
+                    <option value="52.406799 -1.504689">Ellen Terry</option>
+                    <option value="52.407812 -1.504942">George Eliot</option>
 										<option value="52.407231 -1.502662">Graham Sutherland</option>
-                                        <option value="52.406683 -1.501497">Jaguar</option>
+                    <option value="52.406683 -1.501497">Jaguar</option>
 										<option value="52.407626 -1.503872">James Starley</option>
 										<option value="52.406062 -1.501317">Library</option>
-                                        <option value="52.407833 -1.503738">Maurice Foss</option>
+                    <option value="52.407833 -1.503738">Maurice Foss</option>
 										<option value="52.406636 -1.499889">Multi Storey Car Park</option>
-                                        <option value="52.408497 -1.506440">Priory</option> 
-                                        <option value="52.406827 -1.505148">Richard Crossman</option>
+                    <option value="52.408497 -1.506440">Priory</option> 
+                    <option value="52.406827 -1.505148">Richard Crossman</option>
 										<option value="52.405529 -1.505479">Sir John Laing</option>
-                                        <option value="52.407121 -1.499938">Sir William Lyons</option>
+                    <option value="52.407121 -1.499938">Sir William Lyons</option>
 										<option value="52.406091 -1.503946">Sports and Recreation Centre</option>
-                                        <option value="52.404736 -1.500288">Student Centre</option>
+                    <option value="52.404736 -1.500288">Student Centre</option>
 										<option value="52.407283 -1.504535">The Hub</option>
-                                        <option value="52.405411 -1.501189">Whitefriars</option>
+                    <option value="52.405411 -1.501189">Whitefriars</option>
 										<option value="52.406431 -1.501569">William Morris</option>
 
 									</select>
@@ -58,27 +58,27 @@
 									<select id="list2">
 										
 										<option value="52.408141 -1.506584">Alan Berry </option>
-                                        <option value="52.410193 -1.500576">Alma </option>
+                    <option value="52.410193 -1.500576">Alma </option>
 										<option value="52.406908 -1.499888">Armstrong Siddeley</option>
 										<option value="52.407662 -1.503825">Bugatti</option>
-                                        <option value="52.408635 -1.504771">Charles Ward</option>
+                    <option value="52.408635 -1.504771">Charles Ward</option>
 										<option value="52.405482 -1.501099">EEC</option>
-                                        <option value="52.406799 -1.504689">Ellen Terry</option>
-                                        <option value="52.407812 -1.504942">George Eliot</option>
+                    <option value="52.406799 -1.504689">Ellen Terry</option>
+                    <option value="52.407812 -1.504942">George Eliot</option>
 										<option value="52.407231 -1.502662">Graham Sutherland</option>
-                                        <option value="52.406683 -1.501497">Jaguar</option>
+                    <option value="52.406683 -1.501497">Jaguar</option>
 										<option value="52.407626 -1.503872">James Starley</option>
 										<option value="52.406062 -1.501317">Library</option>
-                                        <option value="52.407833 -1.503738">Maurice Foss</option>
+                    <option value="52.407833 -1.503738">Maurice Foss</option>
 										<option value="52.406636 -1.499889">Multi Storey Car Park</option>
-                                        <option value="52.408497 -1.506440">Priory</option> 
-                                        <option value="52.406827 -1.505148">Richard Crossman</option>
+                    <option value="52.408497 -1.506440">Priory</option> 
+                    <option value="52.406827 -1.505148">Richard Crossman</option>
 										<option value="52.405529 -1.505479">Sir John Laing</option>
-                                        <option value="52.407121 -1.499938">Sir William Lyons</option>
+                    <option value="52.407121 -1.499938">Sir William Lyons</option>
 										<option value="52.406091 -1.503946">Sports and Recreation Centre</option>
-                                        <option value="52.404736 -1.500288">Student Centre</option>
+                    <option value="52.404736 -1.500288">Student Centre</option>
 										<option value="52.407283 -1.504535">The Hub</option>
-                                        <option value="52.405411 -1.501189">Whitefriars</option>
+                    <option value="52.405411 -1.501189">Whitefriars</option>
 										<option value="52.406431 -1.501569">William Morris</option>
 
 									</select>
@@ -114,22 +114,22 @@
             lat: myLat, 
             lng: myLong,
             zoom: 17,
-			disableDefaultUI: true
+			      disableDefaultUI: true
           });
 
         $('#start_travel').click(function(e){
 
         	var map = new GMaps({
-            	el: '#map',
-            	lat: myLat, 
-            	lng: myLong,
-            	zoom: 17,
-				disableDefaultUI: true
-          	});
+            el: '#map',
+            lat: myLat, 
+            lng: myLong,
+            zoom: 17,
+				    disableDefaultUI: true
+          });
 
-        	$('#list_of_directions').empty();
-        	var current_location = document.getElementById("list1");
-        	var destination = document.getElementById("list2");
+        $('#list_of_directions').empty();
+        var current_location = document.getElementById("list1");
+        var destination = document.getElementById("list2");
     		var location = current_location.options[current_location.selectedIndex].value.split(" ");
     		var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
 
@@ -140,10 +140,10 @@
 
         	e.preventDefault();
         	map.travelRoute({
-          	  origin: location,
-          	  destination: selectedDestination,
-          	  travelMode: 'walking',  
-          	  step: function(e){
+          	 origin: location,
+          	 destination: selectedDestination,
+          	 travelMode: 'walking',  
+          	 step: function(e){
                 $('#list_of_directions').append('<li>'+e.instructions+'</li>');
                 $('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
                   map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
