@@ -1,21 +1,26 @@
-import collections, math, pickle, sqlite3 as sql
+import collections
+import math
+import pickle
+import sqlite3 as sql
+
 
 class Graph:
+
 	''' DataType to represent a graph. inspired by https://gist.github.com/econchick/4666413 
-	
+
 	Class Attributes:
-	    self.verticies
-	    Type: set
-	    Stores the verticeis in the graph
+			self.verticies
+			Type: set
+			Stores the verticeis in the graph
 
-	    self.edges
-	    Type: dict
-	    Stores the connecting edges for each vertex
+			self.edges
+			Type: dict
+			Stores the connecting edges for each vertex
 
-	    self.weights
-	    Type: dict
-	    Stores a dictionary where the keys are touples. Each touple representing the distance
-	    between the two verticies in the touple.
+			self.weights
+			Type: dict
+			Stores a dictionary where the keys are touples. Each touple representing the distance
+			between the two verticies in the touple.
 
 	'''
 
@@ -37,10 +42,12 @@ class Graph:
 		self.edges[to_vertex].append(from_vertex)
 		self.weights[(from_vertex, to_vertex)] = distance
 		self.weights[(to_vertex, from_vertex)] = distance
- 
+
+
 class Database:
+
 	''' Database class which handles the storing and collection of data from "ECC_Building.sqlite3"
-	
+
 	Class Attributes
 	self.connection
 	Type: connection to 'ECC_Building.sqlite3'
@@ -50,6 +57,7 @@ class Database:
 	Cursor to execute sql commands to database
 
 	'''
+
 	def __init__(self):
 		self.connection = sql.connect('ECC_Building.sqlite3')
 		self.cursor = self.connection.cursor()
@@ -96,7 +104,7 @@ class Database:
 			if not vertex:
 				break
 			else:
-				verticies.append(vertex)
+				verticies.append(vertex[0])
 
 		return verticies
 
@@ -104,20 +112,20 @@ class Database:
 def dijkstra(graph, start_node):
 	'''
 	Method variables:
-		visited
-		Type: set
-		Stores the values of visited nodes
+					visited
+					Type: set
+					Stores the values of visited nodes
 
-		progress
-		Type: dict
-		Stores a node value with the distance to that node from the start node
-		Key = Vertex in graph
-		Value = distance to Vertex from start
+					progress
+					Type: dict
+					Stores a node value with the distance to that node from the start node
+					Key = Vertex in graph
+					Value = distance to Vertex from start
 
-		predecessors
-		Type: dict
-		Key = Node
-		Value = Node which travled from to get to Key
+					predecessors
+					Type: dict
+					Key = Node
+					Value = Node which travled from to get to Key
 
 	'''
 
@@ -125,7 +133,8 @@ def dijkstra(graph, start_node):
 	visited = set()
 
 	# progress represents the distance from start -> vertex. It is created with each distance
-	# being equal to 'math.inf' this is becuase we do not know the distance to any node yet.
+	# being equal to 'math.inf' this is becuase we do not know the distance to
+	# any node yet.
 	progress = dict.fromkeys(list(graph.verticies), math.inf)
 	predecessors = dict.fromkeys(list(graph.verticies), None)
 
@@ -134,12 +143,13 @@ def dijkstra(graph, start_node):
 
 	# While there is a node that is not in visited
 	while visited != graph.verticies:
-		# vertex becomes the closest node that has not yet been visited. It will begin at 'start_node'
+		# vertex becomes the closest node that has not yet been visited. It
+		# will begin at 'start_node'
 		vertex = min((set(progress.keys()) - visited), key=progress.get)
 
 		# for each node which is not in visited
 		for neighborNode in set(graph.edges[vertex]) - visited:
-			# New path is set to the current distance value in 'progress[vertex] 
+			# New path is set to the current distance value in 'progress[vertex]
 			# plus the new weight distance'
 			testPath = progress[vertex] + graph.weights[vertex, neighborNode]
 
@@ -153,8 +163,12 @@ def dijkstra(graph, start_node):
 		visited.add(vertex)
 	return (progress, predecessors)
 
+
 def short_path(graph, start, end):
 	''' Uses the Dijkstra Method to return the shortest path from 'start' to 'end' '''
+
+	if start not in graph.verticies or end not in graph.verticies:
+		raise TypeError("Your starting point or destination is not in the graph")
 
 	# Update progress and predecessors with the dijkstra method
 	progress, predecessors = dijkstra(graph, start)
@@ -167,12 +181,12 @@ def short_path(graph, start, end):
 		currentPath.append(vertex)
 		vertex = predecessors[vertex]
 
-	return(currentPath[::-1], progress[end])
+	return currentPath[::-1], progress[end]
 
-if __name__ == '__main__':
-	print("Running unit tests")
+# if __name__ == '__main__':
 
-	# # Davids test graph // Uncomment to test
+	############################## First Unit Testing graph ##################
+
 	# Graph = Graph()
 	# # Verticies
 	# Graph.add_vertex('a')
@@ -180,7 +194,7 @@ if __name__ == '__main__':
 	# Graph.add_vertex('c')
 	# Graph.add_vertex('d')
 	# Graph.add_vertex('e')
-	# # Edges 
+	# # Edges
 	# Graph.add_edge('a', 'b', 5)
 	# Graph.add_edge('a', 'c', 6)
 	# Graph.add_edge('a', 'd', 10)
@@ -188,37 +202,22 @@ if __name__ == '__main__':
 	# Graph.add_edge('c', 'd', 6)
 	# Graph.add_edge('d', 'e', 2)
 
-	# # ECC Building Graph // Stored in ECC_Building.sqlite3
+	############################## Second Unit Testing graph #################
+
+	# db = Database()
 	# Graph = Graph()
-	# # #Verticies
-	# Graph.add_vertex('ECG-13')
-	# Graph.add_vertex('ECG-14')
-	# Graph.add_vertex('ECG-15')
-	# Graph.add_vertex('ECG-27')
-	# Graph.add_vertex('Main Entrance')
-	# Graph.add_vertex('First Floor Stairs')
-	# # Edges
-	# Graph.add_edge('ECG-13', 'ECG-14', 2)
-	# Graph.add_edge('ECG-13', 'ECG-15', 4)
-	# Graph.add_edge('ECG-14', 'ECG-15', 1)
-	# Graph.add_edge('ECG-15', 'Main Entrance', 5)
-	# Graph.add_edge('ECG-15', 'First Floor Stairs', 2)
-	# Graph.add_edge('ECG-27', 'Main Entrance', 1)
-	# Graph.add_edge('ECG-27', 'First Floor Stairs', 4)
-	# Graph.add_edge('Main Entrance', 'First Floor Stairs', 3)
 
-	# Unit Test for Dijkstra's Algorithm
-	db = Database()
-	Graph = Graph()
+	# edges = db.get_edges() # get edges
+	# verticies = db.get_verticies() # get verticies
 
-	edges = db.get_edges()
-	verticies = db.get_verticies()
+	# for edge in edges:
+	# 	Graph.add_edge(edge[0], edge[1], edge[2])
+	# for vertex in verticies:
+	# 	Graph.add_vertex(vertex)
 
-	for edge in edges:
-		Graph.add_edge(edge[0][0], edge[0][1], edge[0][2])
-	for vertex in verticies:
-		Graph.add_vertex(vertex[0])
+	# Unit testing loop to test all variations of
 
-	for node in set(Graph.verticies):
-		for vertex in set(Graph.verticies):
-			print('From: {0}, To: {1}'.format(node, vertex), (short_path(Graph, node, vertex)))
+	# #Unit Test for Dijkstra's Algorithm
+	# for node in set(Graph.verticies):
+	# 	for vertex in set(Graph.verticies):
+	# 		print('From: {0}, To: {1}'.format(node, vertex), (short_path(Graph, node, vertex)))
