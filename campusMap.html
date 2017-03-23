@@ -1,912 +1,899 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" type="text/css" href="static/css/campusMap.css">
-  
-  <title>Campus Map</title>
-  <script src="https://maps.google.com/maps/api/js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="static/js/gmaps.js"></script> 
-</head>
-<body>
-      <div class="menu-wrap">
-          <nav class="menu">
-            <div class="icon-list"><br>
-                  <!-- Button Declarations -->
-                  <center><img src="static/images/covUniLogoFinal.png" alt="" width="200" height="60" class="menu-image"/></center><br>
-                  <a href="about"><em class=""></em><span>About</span></a> <br>
-                			<a href="indoorNav"><em class=""></em><span>EEC Building Navigation</span></a> <br>
-							<a href="campusMap"><em class=""></em><span>Campus Navigation</span></a> <br>
-							<a href="covUniBuildings"><em class=""></em><span>Buildings on Campus</span></a> <br>
-							<a href="admin"><em class=""></em><span>Administration</span></a> <br><br>
-                  
-                   <center><form action="campusMap">
-							<table>
-								<tbody><tr><th align="center"><font color = "white">From: </font></th><td>
-									<select id="list1">
-										<option value="">My current GPS location</option>
-										<option value="52.408141 -1.506584">Alan Berry </option>
-                    					<option value="52.410193 -1.500576">Alma </option>
-										<option value="52.406908 -1.499888">Armstrong Siddeley</option>
-										<option value="52.407662 -1.503825">Bugatti</option>
-                   						<option value="52.408635 -1.504771">Charles Ward</option>
-										<option value="52.405482 -1.501099">EEC</option>
-                   						<option value="52.406799 -1.504689">Ellen Terry</option>
-                  						<option value="52.407812 -1.504942">George Eliot</option>
-										<option value="52.407231 -1.502662">Graham Sutherland</option>
-                  					    <option value="52.406683 -1.501497">Jaguar</option>
-										<option value="52.407626 -1.503872">James Starley</option>
-										<option value="52.406062 -1.501317">Library</option>
-                   						<option value="52.407833 -1.503738">Maurice Foss</option>
-										<option value="52.406636 -1.499889">Multi Storey Car Park</option>
-                    					<option value="52.408497 -1.506440">Priory</option> 
-                   						<option value="52.406827 -1.505148">Richard Crossman</option>
-										<option value="52.405529 -1.505479">Sir John Laing</option>
-                    					<option value="52.407121 -1.499938">Sir William Lyons</option>
-										<option value="52.406091 -1.503946">Sports and Recreation Centre</option>
-                    					<option value="52.404736 -1.500288">Student Centre</option>
-										<option value="52.407283 -1.504535">The Hub</option>
-                    					<option value="52.405411 -1.501189">Whitefriars</option>
-										<option value="52.406431 -1.501569">William Morris</option>
-									
-									</select>
-                  <br><br>
-
-								</td></tr><tr><th><font color = "white">To: </font></th><td>
-
-									<select id="list2">
-										
-										<option value="52.408141 -1.506584">Alan Berry </option>
-                    					<option value="52.410193 -1.500576">Alma </option>
-										<option value="52.406908 -1.499888">Armstrong Siddeley</option>
-										<option value="52.407662 -1.503825">Bugatti</option>
-                    					<option value="52.408635 -1.504771">Charles Ward</option>
-										<option value="52.405482 -1.501099">EEC</option>
-                    					<option value="52.406799 -1.504689">Ellen Terry</option>
-                    					<option value="52.407812 -1.504942">George Eliot</option>
-										<option value="52.407231 -1.502662">Graham Sutherland</option>
-                    					<option value="52.406683 -1.501497">Jaguar</option>
-										<option value="52.407626 -1.503872">James Starley</option>
-										<option value="52.406062 -1.501317">Library</option>
-                    					<option value="52.407833 -1.503738">Maurice Foss</option>
-										<option value="52.406636 -1.499889">Multi Storey Car Park</option>
-                    					<option value="52.408497 -1.506440">Priory</option> 
-                    					<option value="52.406827 -1.505148">Richard Crossman</option>
-										<option value="52.405529 -1.505479">Sir John Laing</option>
-                    					<option value="52.407121 -1.499938">Sir William Lyons</option>
-										<option value="52.406091 -1.503946">Sports and Recreation Centre</option>
-                    					<option value="52.404736 -1.500288">Student Centre</option>
-										<option value="52.407283 -1.504535">The Hub</option>
-                    					<option value="52.405411 -1.501189">Whitefriars</option>
-										<option value="52.406431 -1.501569">William Morris</option>
-
-									</select>
-								</td></tr>
-                                </tbody></table>
-                                <br><br>
-
-							<a href="#" id="start_travel" class="codrops-demos a test-box"><font color = "black">GO</font></a>
-                            </form></center>  
-
-                  
-              </div>
-          </nav>
-      <button class="close-button" id="close-button"></button>
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/css/campusMap.css">
+    
+    <title>Campus Map</title>
+    <script src="https://maps.google.com/maps/api/js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="static/js/gmaps.js"></script>
+  </head>
+  <body>
+    <div class="menu-wrap">
+      <nav class="menu">
+        <div class="icon-list"><br>
+          <!-- Button Declarations -->
+          <center><img src="static/images/covUniLogoFinal.png" alt="" width="200" height="60" class="menu-image"/></center><br>
+          <a href="about"><em class=""></em><span>About</span></a> <br>
+          <a href="ecBuildingNav"><em class=""></em><span>EEC Building Navigation</span></a> <br>
+          <a href="campusMap"><em class=""></em><span>Campus Navigation</span></a> <br>
+          <a href="covUniBuildings"><em class=""></em><span>Buildings on Campus</span></a> <br>
+          <a href="admin"><em class=""></em><span>Administration</span></a> <br><br>
+          
+          <center><form action="campusMap">
+            <table>
+              <tbody><tr><th align="center"><font color = "white">From: </font></th><td>
+              <select id="list1">
+                <option value="">My current GPS location</option>
+                <option value="52.408141 -1.506584">Alan Berry </option>
+                <option value="52.410193 -1.500576">Alma </option>
+                <option value="52.406908 -1.499888">Armstrong Siddeley</option>
+                <option value="52.407662 -1.503825">Bugatti</option>
+                <option value="52.408635 -1.504771">Charles Ward</option>
+                <option value="52.405482 -1.501099">EEC</option>
+                <option value="52.406799 -1.504689">Ellen Terry</option>
+                <option value="52.407812 -1.504942">George Eliot</option>
+                <option value="52.407231 -1.502662">Graham Sutherland</option>
+                <option value="52.406683 -1.501497">Jaguar</option>
+                <option value="52.407626 -1.503872">James Starley</option>
+                <option value="52.406062 -1.501317">Library</option>
+                <option value="52.407833 -1.503738">Maurice Foss</option>
+                <option value="52.406636 -1.499889">Multi Storey Car Park</option>
+                <option value="52.408497 -1.506440">Priory</option>
+                <option value="52.406827 -1.505148">Richard Crossman</option>
+                <option value="52.405529 -1.505479">Sir John Laing</option>
+                <option value="52.407121 -1.499938">Sir William Lyons</option>
+                <option value="52.406091 -1.503946">Sports and Recreation Centre</option>
+                <option value="52.404736 -1.500288">Student Centre</option>
+                <option value="52.407283 -1.504535">The Hub</option>
+                <option value="52.405411 -1.501189">Whitefriars</option>
+                <option value="52.406431 -1.501569">William Morris</option>
+                
+              </select>
+              <br><br>
+              </td></tr><tr><th><font color = "white">To: </font></th><td>
+              <select id="list2">
+                
+                <option value="52.408141 -1.506584">Alan Berry </option>
+                <option value="52.410193 -1.500576">Alma </option>
+                <option value="52.406908 -1.499888">Armstrong Siddeley</option>
+                <option value="52.407662 -1.503825">Bugatti</option>
+                <option value="52.408635 -1.504771">Charles Ward</option>
+                <option value="52.405482 -1.501099">EEC</option>
+                <option value="52.406799 -1.504689">Ellen Terry</option>
+                <option value="52.407812 -1.504942">George Eliot</option>
+                <option value="52.407231 -1.502662">Graham Sutherland</option>
+                <option value="52.406683 -1.501497">Jaguar</option>
+                <option value="52.407626 -1.503872">James Starley</option>
+                <option value="52.406062 -1.501317">Library</option>
+                <option value="52.407833 -1.503738">Maurice Foss</option>
+                <option value="52.406636 -1.499889">Multi Storey Car Park</option>
+                <option value="52.408497 -1.506440">Priory</option>
+                <option value="52.406827 -1.505148">Richard Crossman</option>
+                <option value="52.405529 -1.505479">Sir John Laing</option>
+                <option value="52.407121 -1.499938">Sir William Lyons</option>
+                <option value="52.406091 -1.503946">Sports and Recreation Centre</option>
+                <option value="52.404736 -1.500288">Student Centre</option>
+                <option value="52.407283 -1.504535">The Hub</option>
+                <option value="52.405411 -1.501189">Whitefriars</option>
+                <option value="52.406431 -1.501569">William Morris</option>
+              </select>
+            </td></tr>
+          </tbody></table>
+          <br><br>
+          <a href="#" id="start_travel" class="codrops-demos a test-box"><font color = "black">GO</font></a>
+        </form></center>
+        
       </div>
-	<button class="menu-button" id="open-button"></button>
-	<script type="text/javascript" src="static/js/main.js"></script>
-
+    </nav>
+    <button class="close-button" id="close-button"></button>
+  </div>
+  <button class="menu-button" id="open-button"></button>
+  <script type="text/javascript" src="static/js/main.js"></script>
   <!-- Eds map code -->
   <div id="map"></div>
-  <div id="selection" style="overflow-y: scroll; ">    
-  	<ol class="centering" id="list_of_directions"></ol>    
-  </div>
-  <script>    
-
-    GMaps.geolocate({
-    	success: function(position) {
-          var myLat = position.coords.latitude;
-          var myLong = position.coords.longitude;
-
-          var map = new GMaps({
-            el: '#map',
-            lat: myLat, 
-            lng: myLong,
-            zoom: 17,
-			      disableDefaultUI: true
-          });
-		  
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.408141,
- 				 lng: -1.506584,
-				 infoWindow:{
-        			content: '<p>This is the Alan Berry Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.410193,
- 				 lng: -1.500576,
-				 infoWindow:{
-        			content: '<p>This is the Alma Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406908,
- 				 lng: -1.499888,
-				 infoWindow:{
-        			content: '<p>This is the Armstrong Siddeley Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407662,
- 				 lng: -1.503825,
-				 infoWindow:{
-        			content: '<p>This is the Bugatti Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.408635,
- 				 lng: -1.504771,
-				 infoWindow:{
-        			content: '<p>This is the Charles Ward Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.405302,
- 				 lng: -1.500099,
-				 infoWindow:{
-        			content: '<p>This is the Enginering and Computing Building (EEC)!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406799,
- 				 lng: -1.504689,
-				 infoWindow:{
-        			content: '<p>This is the Ellen Terry Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407812,
- 				 lng: -1.504942,
-				 infoWindow:{
-        			content: '<p>This is the George Eliot Building (EEC)!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407231,
- 				 lng: -1.502662,
-				 infoWindow:{
-        			content: '<p>This is the Graham Sutherland Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406683,
- 				 lng: -1.501497,
-				 infoWindow:{
-        			content: '<p>This is the Jaguar Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.404736,
- 				 lng: -1.500288,
-				 infoWindow:{
-        			content: '<p>This is the Student Centre!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407626,
- 				 lng: -1.503872,
-				 infoWindow:{
-        			content: '<p>This is the James Starley Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406062,
- 				 lng: -1.501317,
-				 infoWindow:{
-        			content: '<p>This is the Library!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407833,
- 				 lng: -1.503738,
-				 infoWindow:{
-        			content: '<p>This is the Maurice Foss Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406636,
- 				 lng: -1.499889,
-				 infoWindow:{
-        			content: '<p>This is the Multi Storey Car Park!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.408497,
- 				 lng: -1.506440,
-				 infoWindow:{
-        			content: '<p>This is the Priory Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406827,
- 				 lng: -1.505148,
-				 infoWindow:{
-        			content: '<p>This is the Richard Crossman Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.405529,
- 				 lng: -1.505479,
-				 infoWindow:{
-        			content: '<p>This is the Sir John Laing Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407121,
- 				 lng: -1.499938,
-				 infoWindow:{
-        			content: '<p>This is the Sir William Lyons Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406091,
- 				 lng: -1.503946,
-				 infoWindow:{
-        			content: '<p>This is the Sports and Recreation Centre!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407283,
- 				 lng: -1.504535,
-				 infoWindow:{
-        			content: '<p>This is The Hub!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.405411,
- 				 lng: -1.501189,
-				 infoWindow:{
-        			content: '<p>This is the Whitefriars Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406431,
- 				 lng: -1.501569,
-				 infoWindow:{
-        			content: '<p>This is the William Morris Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-			
-			
-
-        $('#start_travel').click(function(e){
-
-        	var map = new GMaps({
-            el: '#map',
-            lat: myLat, 
-            lng: myLong,
-            zoom: 17,
-				    disableDefaultUI: true
-          });
-		  
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.408141,
- 				 lng: -1.506584,
-				 infoWindow:{
-        			content: '<p>This is the Alan Berry Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.410193,
- 				 lng: -1.500576,
-				 infoWindow:{
-        			content: '<p>This is the Alma Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406908,
- 				 lng: -1.499888,
-				 infoWindow:{
-        			content: '<p>This is the Armstrong Siddeley Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407662,
- 				 lng: -1.503825,
-				 infoWindow:{
-        			content: '<p>This is the Bugatti Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.408635,
- 				 lng: -1.504771,
-				 infoWindow:{
-        			content: '<p>This is the Charles Ward Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.405302,
- 				 lng: -1.500099,
-				 infoWindow:{
-        			content: '<p>This is the Enginering and Computing Building (EEC)!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406799,
- 				 lng: -1.504689,
-				 infoWindow:{
-        			content: '<p>This is the Ellen Terry Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407812,
- 				 lng: -1.504942,
-				 infoWindow:{
-        			content: '<p>This is the George Eliot Building (EEC)!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407231,
- 				 lng: -1.502662,
-				 infoWindow:{
-        			content: '<p>This is the Graham Sutherland Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406683,
- 				 lng: -1.501497,
-				 infoWindow:{
-        			content: '<p>This is the Jaguar Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.404736,
- 				 lng: -1.500288,
-				 infoWindow:{
-        			content: '<p>This is the Student Centre!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407626,
- 				 lng: -1.503872,
-				 infoWindow:{
-        			content: '<p>This is the James Starley Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406062,
- 				 lng: -1.501317,
-				 infoWindow:{
-        			content: '<p>This is the Library!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407833,
- 				 lng: -1.503738,
-				 infoWindow:{
-        			content: '<p>This is the Maurice Foss Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406636,
- 				 lng: -1.499889,
-				 infoWindow:{
-        			content: '<p>This is the Multi Storey Car Park!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.408497,
- 				 lng: -1.506440,
-				 infoWindow:{
-        			content: '<p>This is the Priory Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406827,
- 				 lng: -1.505148,
-				 infoWindow:{
-        			content: '<p>This is the Richard Crossman Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.405529,
- 				 lng: -1.505479,
-				 infoWindow:{
-        			content: '<p>This is the Sir John Laing Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407121,
- 				 lng: -1.499938,
-				 infoWindow:{
-        			content: '<p>This is the Sir William Lyons Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406091,
- 				 lng: -1.503946,
-				 infoWindow:{
-        			content: '<p>This is the Sports and Recreation Centre!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.407283,
- 				 lng: -1.504535,
-				 infoWindow:{
-        			content: '<p>This is The Hub!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.405411,
- 				 lng: -1.501189,
-				 infoWindow:{
-        			content: '<p>This is the Whitefriars Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-		  map.addMarker({
-			  	 icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
- 				 lat: 52.406431,
- 				 lng: -1.501569,
-				 infoWindow:{
-        			content: '<p>This is the William Morris Building!</p>'
-   				 },
-				 mouseover: function(e){
-                	this.infoWindow.open(this.map, this);
-           		 },mouseout: function(e){
-                	this.infoWindow.close(this.map, this);
-           		 },
-				 click: function(e) {
-    				this.infoWindow.open(this.map, this);
- 				 }
-			});
-
-        $('#list_of_directions').empty();
-        var current_location = document.getElementById("list1");
-        var destination = document.getElementById("list2");
-    		var location = current_location.options[current_location.selectedIndex].value.split(" ");
-    		var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
-
-    		if(location == "") //if you select my GPS location
-    		{
-    			location = [myLat, myLong]
-    		}
-
-        	e.preventDefault();
-        	map.travelRoute({
-          	 origin: location,
-          	 destination: selectedDestination,
-          	 travelMode: 'walking',  
-          	 step: function(e){
-                $('#list_of_directions').append('<li>'+e.instructions+'</li>');
-                $('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
-                  map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
-                  map.drawPolyline({
-                    path: e.path,
-          	        strokeColor: '#0033cc',
-          	        strokeOpacity: 0.4,
-          	        strokeWeight: 6
-                  });
-                });
-              }
-          	});            	     	
-        });
-      },
-      error: function(error) {
-        alert('Geolocation failed: '+error.message);
-      },
-      not_supported: function() {
-        alert("Your browser does not support geolocation");
-      }
-    });
-  </script>
+  <div id="selection" style="overflow-y: scroll; ">
+  <ol class="centering" id="list_of_directions"></ol>
+</div>
+<script>
+GMaps.geolocate({
+  success: function(position) {
+var myLat = position.coords.latitude;
+var myLong = position.coords.longitude;
+var map = new GMaps({
+el: '#map',
+lat: myLat,
+lng: myLong,
+zoom: 17,
+      disableDefaultUI: true
+});
+    
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.408141,
+        lng: -1.506584,
+        infoWindow:{
+      content: '<p>This is the Alan Berry Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.410193,
+        lng: -1.500576,
+        infoWindow:{
+      content: '<p>This is the Alma Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406908,
+        lng: -1.499888,
+        infoWindow:{
+      content: '<p>This is the Armstrong Siddeley Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407662,
+        lng: -1.503825,
+        infoWindow:{
+      content: '<p>This is the Bugatti Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.408635,
+        lng: -1.504771,
+        infoWindow:{
+      content: '<p>This is the Charles Ward Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.405302,
+        lng: -1.500099,
+        infoWindow:{
+      content: '<p>This is the Enginering and Computing Building (EEC)!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406799,
+        lng: -1.504689,
+        infoWindow:{
+      content: '<p>This is the Ellen Terry Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407812,
+        lng: -1.504942,
+        infoWindow:{
+      content: '<p>This is the George Eliot Building (EEC)!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407231,
+        lng: -1.502662,
+        infoWindow:{
+      content: '<p>This is the Graham Sutherland Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406683,
+        lng: -1.501497,
+        infoWindow:{
+      content: '<p>This is the Jaguar Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.404736,
+        lng: -1.500288,
+        infoWindow:{
+      content: '<p>This is the Student Centre!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407626,
+        lng: -1.503872,
+        infoWindow:{
+      content: '<p>This is the James Starley Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406062,
+        lng: -1.501317,
+        infoWindow:{
+      content: '<p>This is the Library!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407833,
+        lng: -1.503738,
+        infoWindow:{
+      content: '<p>This is the Maurice Foss Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406636,
+        lng: -1.499889,
+        infoWindow:{
+      content: '<p>This is the Multi Storey Car Park!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.408497,
+        lng: -1.506440,
+        infoWindow:{
+      content: '<p>This is the Priory Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406827,
+        lng: -1.505148,
+        infoWindow:{
+      content: '<p>This is the Richard Crossman Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.405529,
+        lng: -1.505479,
+        infoWindow:{
+      content: '<p>This is the Sir John Laing Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407121,
+        lng: -1.499938,
+        infoWindow:{
+      content: '<p>This is the Sir William Lyons Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406091,
+        lng: -1.503946,
+        infoWindow:{
+      content: '<p>This is the Sports and Recreation Centre!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407283,
+        lng: -1.504535,
+        infoWindow:{
+      content: '<p>This is The Hub!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.405411,
+        lng: -1.501189,
+        infoWindow:{
+      content: '<p>This is the Whitefriars Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406431,
+        lng: -1.501569,
+        infoWindow:{
+      content: '<p>This is the William Morris Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+      
+      
+$('#start_travel').click(function(e){
+  var map = new GMaps({
+el: '#map',
+lat: myLat,
+lng: myLong,
+zoom: 17,
+        disableDefaultUI: true
+});
+    
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.408141,
+        lng: -1.506584,
+        infoWindow:{
+      content: '<p>This is the Alan Berry Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.410193,
+        lng: -1.500576,
+        infoWindow:{
+      content: '<p>This is the Alma Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406908,
+        lng: -1.499888,
+        infoWindow:{
+      content: '<p>This is the Armstrong Siddeley Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407662,
+        lng: -1.503825,
+        infoWindow:{
+      content: '<p>This is the Bugatti Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.408635,
+        lng: -1.504771,
+        infoWindow:{
+      content: '<p>This is the Charles Ward Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.405302,
+        lng: -1.500099,
+        infoWindow:{
+      content: '<p>This is the Enginering and Computing Building (EEC)!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406799,
+        lng: -1.504689,
+        infoWindow:{
+      content: '<p>This is the Ellen Terry Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407812,
+        lng: -1.504942,
+        infoWindow:{
+      content: '<p>This is the George Eliot Building (EEC)!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407231,
+        lng: -1.502662,
+        infoWindow:{
+      content: '<p>This is the Graham Sutherland Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406683,
+        lng: -1.501497,
+        infoWindow:{
+      content: '<p>This is the Jaguar Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.404736,
+        lng: -1.500288,
+        infoWindow:{
+      content: '<p>This is the Student Centre!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407626,
+        lng: -1.503872,
+        infoWindow:{
+      content: '<p>This is the James Starley Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406062,
+        lng: -1.501317,
+        infoWindow:{
+      content: '<p>This is the Library!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407833,
+        lng: -1.503738,
+        infoWindow:{
+      content: '<p>This is the Maurice Foss Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406636,
+        lng: -1.499889,
+        infoWindow:{
+      content: '<p>This is the Multi Storey Car Park!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.408497,
+        lng: -1.506440,
+        infoWindow:{
+      content: '<p>This is the Priory Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406827,
+        lng: -1.505148,
+        infoWindow:{
+      content: '<p>This is the Richard Crossman Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.405529,
+        lng: -1.505479,
+        infoWindow:{
+      content: '<p>This is the Sir John Laing Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407121,
+        lng: -1.499938,
+        infoWindow:{
+      content: '<p>This is the Sir William Lyons Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406091,
+        lng: -1.503946,
+        infoWindow:{
+      content: '<p>This is the Sports and Recreation Centre!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.407283,
+        lng: -1.504535,
+        infoWindow:{
+      content: '<p>This is The Hub!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.405411,
+        lng: -1.501189,
+        infoWindow:{
+      content: '<p>This is the Whitefriars Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+    map.addMarker({
+        icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        lat: 52.406431,
+        lng: -1.501569,
+        infoWindow:{
+      content: '<p>This is the William Morris Building!</p>'
+        },
+        mouseover: function(e){
+  this.infoWindow.open(this.map, this);
+    },mouseout: function(e){
+  this.infoWindow.close(this.map, this);
+    },
+        click: function(e) {
+        this.infoWindow.open(this.map, this);
+        }
+      });
+$('#list_of_directions').empty();
+var current_location = document.getElementById("list1");
+var destination = document.getElementById("list2");
+    var location = current_location.options[current_location.selectedIndex].value.split(" ");
+    var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
+    if(location == "") //if you select my GPS location
+    {
+      location = [myLat, myLong]
+    }
+  e.preventDefault();
+  map.travelRoute({
+  origin: location,
+  destination: selectedDestination,
+  travelMode: 'walking',
+  step: function(e){
+$('#list_of_directions').append('<li>'+e.instructions+'</li>');
+$('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
+map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
+map.drawPolyline({
+path: e.path,
+  strokeColor: '#0033cc',
+  strokeOpacity: 0.4,
+  strokeWeight: 6
+});
+});
+}
+      });
+});
+},
+error: function(error) {
+alert('Geolocation failed: '+error.message);
+},
+not_supported: function() {
+alert("Your browser does not support geolocation");
+}
+});
+</script>
 </body>
 </html>

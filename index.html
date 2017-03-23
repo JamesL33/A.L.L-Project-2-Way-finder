@@ -1,53 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
-    	<title>Navigation System</title>
-			<!--CSS Declerations-->
-			<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css" />
-			<!--Missing??? <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> -->
-			<link rel="stylesheet" type="text/css" href="static/map.css">
-			<!-- End of CSS Declerations-->
+		<title>Navigation System</title>
+		<!--CSS Declerations-->
+		<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css" />
+		<!--Missing??? <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> -->
+		<link rel="stylesheet" type="text/css" href="static/map.css">
+		<!-- End of CSS Declerations-->
 	</head>
-			<body>
-				<div class="container">
-					<div class="menu-wrap">
-						<nav class="menu">
-							<div class="icon-list"><br>
-								<!-- Button Declarations -->
-                                <center><img src="static/images/covUniLogoFinal.png" alt="" width="200" height="60" class="menu-image"/></center><br>
-              					<a href="about"><em class=""></em><span>About</span></a> <br>
-                			<a href="indoorNav"><em class=""></em><span>EEC Building Navigation</span></a> <br>
-							<a href="campusMap"><em class=""></em><span>Campus Navigation</span></a> <br>
-							<a href="covUniBuildings"><em class=""></em><span>Buildings on Campus</span></a> <br>
-							<a href="admin"><em class=""></em><span>Administration</span></a> <br>
-							</div>
-						</nav>
-					<button class="close-button" id="close-button"></button>
+	<body>
+		<div class="container">
+			<div class="menu-wrap">
+				<nav class="menu">
+					<div class="icon-list"><br>
+						<!-- Button Declarations -->
+						<center><img src="static/images/covUniLogoFinal.png" alt="" width="200" height="60" class="menu-image"/></center><br>
+						<a href="about"><em class=""></em><span>About</span></a> <br>
+						<a href="ecBuildingNav"><em class=""></em><span>EEC Building Navigation</span></a> <br>
+						<a href="campusMap"><em class=""></em><span>Campus Navigation</span></a> <br>
+						<a href="covUniBuildings"><em class=""></em><span>Buildings on Campus</span></a> <br>
+						<a href="admin"><em class=""></em><span>Administration</span></a> <br>
 					</div>
-        	<button class="menu-button" id="open-button"></button>
-          	<div class="content" id="map">
-  					<!-- Google Maps Api-->
-  					<div id="map"></div>
-  					<script>
-  	  					var map;
-  	 		 			var centerPoint = {lat: 52.407565, lng: -1.510876};
-  	  					function initMap() {
-								map = new google.maps.Map(document.getElementById('map'), {
-  	     			 			center: centerPoint,
-  	     			 			zoom: 16,
-					 			disableDefaultUI: true
-  	    		});
-  	   		 		var marker = new google.maps.Marker({
-  	    			position: centerPoint,
-  	    			map: map
-  	  		    })
-  	 		 	}
-  				</script>
-  				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOKZ9KnQ0OJPf16yB6AnLcFEHdty1rGG4&callback=initMap" async defer></script>
-  				<!--End of Google maps api-->
-
- 		  		</div>
+				</nav>
+				<button class="close-button" id="close-button"></button>
+			</div>
+			<button class="menu-button" id="open-button"></button>
+			<div class="content" id="map">
+				<!-- Google Maps Api-->
+				<div id="map"></div>
+				<script>
+					var map;
+					var centerPoint = {lat: 52.407565, lng: -1.510876};
+					function initMap() {
+							map = new google.maps.Map(document.getElementById('map'), {
+						center: centerPoint,
+						zoom: 16,
+							disableDefaultUI: true
+				});
+				var marker = new google.maps.Marker({
+				position: centerPoint,
+				map: map
+				})
+				}
+				</script>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOKZ9KnQ0OJPf16yB6AnLcFEHdty1rGG4&callback=initMap" async defer></script>
+				<!--End of Google maps api-->
+			</div>
 			</div><!-- Container -->
 			<script src="static/js/main.js"></script>
-	</body>
-</html>
+		</body>
+	</html>
