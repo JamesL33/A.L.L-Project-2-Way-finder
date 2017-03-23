@@ -17,13 +17,13 @@
                   <a href="index"><em class=""></em><span>Coventry University</span></a> <br>
                   <a href="about"><em class=""></em><span>About</span></a> <br>
                   <a href="ecBuildingNav"><em class=""></em><span>EEC Building Navigation</span></a> <br>
-                  <a href="campusNav"><em class=""></em><span>Campus Navigation</span></a> <br>
+                  <a href="indoorNav"><em class=""></em><span>Indoor Navigation</span></a> <br>
                   <a href="covUniBuildings"><em class=""></em><span>Buildings on Campus</span></a> <br>
                   <a href="admin"><em class=""></em><span>Administration</span></a> <br><br>
                   
                    <center><form action="campusMap">
 							<table>
-								<tbody><tr><th align="center"><font color = "white">Coming From: </font></th><td>
+								<tbody><tr><th align="center"><font color = "white">From: </font></th><td>
 									<select id="list1">
 
 										<option value="">My current GPS location</option>
@@ -53,7 +53,7 @@
 
 									</select>
 
-								</td></tr><tr><th align="center"><font color = "white">Going To: </font></th><td>
+								</td></tr><tr><th><font color = "white">To: </font></th><td>
 
 									<select id="list2">
 										
@@ -84,6 +84,7 @@
 									</select>
 								</td></tr>
                                 </tbody></table>
+                                <br><br>
 
 							<a href="#" id="start_travel" class="codrops-demos a test-box"><font color = "black">GO</font></a>
                             </form></center>  
@@ -100,7 +101,7 @@
   <!-- Eds map code -->
   <div id="map"></div>
   <div id="selection" style="overflow-y: scroll; ">    
-  	<ol id="list_of_directions"></ol>    
+  	<ol class="centering" id="list_of_directions"></ol>    
   </div>
   <script>    
 

@@ -26,6 +26,11 @@ html, body {
 	
 	}
 
+.centering
+{
+	text-align: center; list-style-position:inside;
+}
+
 a {
 	color: #4e4a46;
 	text-decoration: none;
