@@ -67,7 +67,7 @@ class home():
                 doc = dominate.document(title='Dominate your HTML')
 
                 with doc.head:
-                    link(rel='stylesheet', href='indoorNav.css')
+                    link(rel='stylesheet', type='text/css', href='static/css/indoorNav.css')
 
                 with doc:
                     with div(id='header').add(ol()):
