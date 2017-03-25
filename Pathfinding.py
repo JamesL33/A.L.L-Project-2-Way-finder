@@ -6,7 +6,7 @@ import sqlite3 as sql
 
 class Graph:
 
-	''' DataType to represent a graph. inspired by https://gist.github.com/econchick/4666413 
+	''' DataType to represent a graph. inspired by https://gist.github.com/econchick/4666413
 
 	Class Attributes:
 			self.verticies
@@ -47,6 +47,11 @@ class Graph:
 class Database:
 
 	''' Database class which handles the storing and collection of data from "ECC_Building.sqlite3"
+
+	I have used a database here instead of just creating the Graph on the fly. This does not save time when
+	the code is run however in the long run this means that this code can be reused by just linking a different
+	database file. As long as the database file contains the correct information the Algorithm should work as
+	expected.
 
 	Class Attributes
 	self.connection
@@ -132,7 +137,7 @@ def dijkstra(graph, start_node):
 	# init variables
 	visited = set()
 
-	# progress represents the distance from start -> vertex. It is created with each distance
+	# progress represents the distance from start to vertex. It is created with each distance
 	# being equal to 'math.inf' this is becuase we do not know the distance to
 	# any node yet.
 	progress = dict.fromkeys(list(graph.verticies), math.inf)
