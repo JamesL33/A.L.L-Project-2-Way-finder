@@ -5,7 +5,7 @@
   
   <title>Campus Map</title>
   <script src="https://maps.google.com/maps/api/js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqcuery/3.1.0/jquery.min.js"></script>
   <script src="static/js/gmaps.js"></script> 
 </head>
 <body>
@@ -26,6 +26,7 @@
 							<table>
 								<tbody><tr><th align="center"><font color = "white">From: </font></th><td>
 									<select id="list1">
+										<option value="">My current GPS location</option>
 									</select>
                   					<br><br>
 
@@ -80,9 +81,9 @@
   </div>
   <script>
   	var select = document.getElementById('list1');
-  	for(index in lat_long) 
+  	for(index in locations) 
   	{
-    	select.options[select.options.length] = new Option(lat_long[index], index);
+    	select.options[select.options.length] = new Option(locations[index], index);
 	}
 
     GMaps.geolocate({

@@ -20,7 +20,7 @@ function createMarker(lat, long, map, info)
 	});
 }
 
-var locations = [
+var beep = [
 "Alan Berry",
 "Alma",
 "Armstrong Siddeley",
@@ -45,7 +45,7 @@ var locations = [
 "Whitefriars",
 "William Morris"];
 
-var lat_long = {
+var locations = {
 	"52.408141 -1.506584" : "Alan Berry",
 	"52.410193 -1.500576" : "Alma",
 	"52.406908 -1.499888" : "Armstrong Siddeley"
