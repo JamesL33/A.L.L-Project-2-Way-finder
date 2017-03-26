@@ -83,8 +83,13 @@
             zoom: 17,
 			disableDefaultUI: true
           });
-
-        createMarker(52.408141, -1.506584, map, "asfasf");
+        var counter = 0;
+        for(index in locations)
+        {
+        	var new_marker = Object.keys(locations)[counter].split(" ")
+        	createMarker(new_marker[0], new_marker[1], map, locations[Object.keys(locations)[counter]]);
+        	counter += 1;        	
+        }
 
         $('#list_of_directions').empty();
         	var current_location = document.getElementById("list1");
