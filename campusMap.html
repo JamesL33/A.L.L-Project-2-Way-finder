@@ -9,6 +9,7 @@
   <script src="static/js/gmaps.js"></script> 
 </head>
 <body>
+  <script src="static/js/markers.js"></script>
       <div class="menu-wrap">
           <nav class="menu">
             <div class="icon-list"><br>
@@ -25,32 +26,6 @@
 							<table>
 								<tbody><tr><th align="center"><font color = "white">From: </font></th><td>
 									<select id="list1">
-
-										<option value="">My current GPS location</option>
-										<option value="52.408141 -1.506584">Alan Berry </option>
-                    					<option value="52.410193 -1.500576">Alma </option>
-										<option value="52.406908 -1.499888">Armstrong Siddeley</option>
-										<option value="52.407662 -1.503825">Bugatti</option>
-                    					<option value="52.408635 -1.504771">Charles Ward</option>
-										<option value="52.405482 -1.501099">EEC</option>
-                    					<option value="52.406799 -1.504689">Ellen Terry</option>
-                    					<option value="52.407812 -1.504942">George Eliot</option>
-										<option value="52.407231 -1.502662">Graham Sutherland</option>
-                    					<option value="52.406683 -1.501497">Jaguar</option>
-										<option value="52.407626 -1.503872">James Starley</option>
-										<option value="52.406062 -1.501317">Library</option>
-                    					<option value="52.407833 -1.503738">Maurice Foss</option>
-										<option value="52.406636 -1.499889">Multi Storey Car Park</option>
-                    					<option value="52.408497 -1.506440">Priory</option> 
-                    					<option value="52.406827 -1.505148">Richard Crossman</option>
-										<option value="52.405529 -1.505479">Sir John Laing</option>
-                   						<option value="52.407121 -1.499938">Sir William Lyons</option>
-										<option value="52.406091 -1.503946">Sports and Recreation Centre</option>
-                    					<option value="52.404736 -1.500288">Student Centre</option>
-										<option value="52.407283 -1.504535">The Hub</option>
-                    					<option value="52.405411 -1.501189">Whitefriars</option>
-										<option value="52.406431 -1.501569">William Morris</option>
-
 									</select>
                   					<br><br>
 
@@ -99,12 +74,16 @@
 	<button class="menu-button" id="open-button"></button>
 	<script type="text/javascript" src="static/js/main.js"></script>
 
-  <!-- Eds map code -->
   <div id="map"></div>
   <div id="selection" style="overflow-y: scroll; ">    
   	<ol class="centering" id="list_of_directions"></ol>    
   </div>
-  <script>    
+  <script>
+  	var select = document.getElementById('list1');
+  	for(index in lat_long) 
+  	{
+    	select.options[select.options.length] = new Option(lat_long[index], index);
+	}
 
     GMaps.geolocate({
     	success: function(position) {
@@ -116,8 +95,8 @@
             lat: myLat, 
             lng: myLong,
             zoom: 17,
-			      disableDefaultUI: true
-          });
+			disableDefaultUI: true
+          });        
 
         $('#start_travel').click(function(e){
 
@@ -126,12 +105,14 @@
             lat: myLat, 
             lng: myLong,
             zoom: 17,
-				    disableDefaultUI: true
+			disableDefaultUI: true
           });
 
+        createMarker(52.408141, -1.506584, map, locations[12]);
+
         $('#list_of_directions').empty();
-        var current_location = document.getElementById("list1");
-        var destination = document.getElementById("list2");
+        	var current_location = document.getElementById("list1");
+        	var destination = document.getElementById("list2");
     		var location = current_location.options[current_location.selectedIndex].value.split(" ");
     		var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
 
