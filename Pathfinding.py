@@ -9,32 +9,32 @@ class Graph:
 	''' DataType to represent a graph. inspired by https://gist.github.com/econchick/4666413
 
 	Class Attributes:
-			self.verticies
+			self.vertices
 			Type: set
-			Stores the verticeis in the graph
+			Stores the vertices's in the graph
 
 			self.edges
-			Type: dict
+			Type: dictionary
 			Stores the connecting edges for each vertex
 
 			self.weights
-			Type: dict
-			Stores a dictionary where the keys are touples. Each touple representing the distance
-			between the two verticies in the touple.
+			Type: dictionary
+			Stores a dictionary where the keys are tuples. Each tuple representing the distance
+			between the two vertices in the tuple.
 
 	'''
 
 	def __init__(self):
-		self.verticies = set()
+		self.vertices = set()
 		self.edges = collections.defaultdict(list)
 		self.weights = {}
 
 	def add_vertex(self, value):
 		''' Add a new vertex to the graph '''
-		self.verticies.add(value)
+		self.vertices.add(value)
 
 	def add_edge(self, from_vertex, to_vertex, distance):
-		''' Adds a connection between two verticies by adding an entry to edges with
+		''' Adds a connection between two vertices by adding an entry to edges with
 		the from and to node '''
 		if from_vertex == to_vertex:
 			pass
@@ -68,9 +68,9 @@ class Database:
 		self.cursor = self.connection.cursor()
 
 	def add_vertex(self, vertex):
-		''' Adds 'vertex' to the 'Verticies' table in the database '''
+		''' Adds 'vertex' to the 'vertices' table in the database '''
 
-		self.cursor.execute(('INSERT INTO Verticies VALUES (?)'), (vertex,))
+		self.cursor.execute(('INSERT INTO vertices VALUES (?)'), (vertex,))
 		self.connection.commit()
 
 	def add_edge(self, edge):
@@ -97,21 +97,21 @@ class Database:
 
 		return edges
 
-	def get_verticies(self):
-		''' Gets all the verticies from the 'Verticies' table in ECC_Building.sqlite3 and returns them in a list '''
+	def get_vertices(self):
+		''' Gets all the vertices from the 'vertices' table in ECC_Building.sqlite3 and returns them in a list '''
 
-		verticies = []
+		vertices = []
 
-		self.cursor.execute('SELECT * FROM Verticies')
+		self.cursor.execute('SELECT * FROM vertices')
 
 		while True:
 			vertex = self.cursor.fetchone()
 			if not vertex:
 				break
 			else:
-				verticies.append(vertex[0])
+				vertices.append(vertex[0])
 
-		return verticies
+		return vertices
 
 
 def dijkstra(graph, start_node):
@@ -122,32 +122,32 @@ def dijkstra(graph, start_node):
 					Stores the values of visited nodes
 
 					progress
-					Type: dict
+					Type: dictionary
 					Stores a node value with the distance to that node from the start node
 					Key = Vertex in graph
 					Value = distance to Vertex from start
 
 					predecessors
-					Type: dict
+					Type: dictionary
 					Key = Node
-					Value = Node which travled from to get to Key
+					Value = Node which traveled from to get to Key
 
 	'''
 
-	# init variables
+	# initialize variables
 	visited = set()
 
 	# progress represents the distance from start to vertex. It is created with each distance
-	# being equal to 'math.inf' this is becuase we do not know the distance to
+	# being equal to 'math.inf' this is because we do not know the distance to
 	# any node yet.
-	progress = dict.fromkeys(list(graph.verticies), math.inf)
-	predecessors = dict.fromkeys(list(graph.verticies), None)
+	progress = dict.fromkeys(list(graph.vertices), math.inf)
+	predecessors = dict.fromkeys(list(graph.vertices), None)
 
 	# Update the start node in progress to the value 0.
 	progress[start_node] = 0
 
 	# While there is a node that is not in visited
-	while visited != graph.verticies:
+	while visited != graph.vertices:
 		# vertex becomes the closest node that has not yet been visited. It
 		# will begin at 'start_node'
 		vertex = min((set(progress.keys()) - visited), key=progress.get)
@@ -172,13 +172,13 @@ def dijkstra(graph, start_node):
 def short_path(graph, start, end):
 	''' Uses the Dijkstra Method to return the shortest path from 'start' to 'end' '''
 
-	if start not in graph.verticies or end not in graph.verticies:
+	if start not in graph.vertices or end not in graph.vertices:
 		raise TypeError("Your starting point or destination is not in the graph")
 
-	# Update progress and predecessors with the dijkstra method
+	# Update progress and predecessors with the Dijkstra method
 	progress, predecessors = dijkstra(graph, start)
 
-	# init variables
+	# initialize variables
 	currentPath = []
 	vertex = end
 
@@ -193,7 +193,7 @@ def short_path(graph, start, end):
 	############################## First Unit Testing graph ##################
 
 	# Graph = Graph()
-	# # Verticies
+	# # Vertices's
 	# Graph.add_vertex('a')
 	# Graph.add_vertex('b')
 	# Graph.add_vertex('c')
@@ -213,16 +213,16 @@ def short_path(graph, start, end):
 	# Graph = Graph()
 
 	# edges = db.get_edges() # get edges
-	# verticies = db.get_verticies() # get verticies
+	# vertices = db.get_vertices() # get vertices's
 
 	# for edge in edges:
 	# 	Graph.add_edge(edge[0], edge[1], edge[2])
-	# for vertex in verticies:
+	# for vertex in vertices:
 	# 	Graph.add_vertex(vertex)
 
 	# Unit testing loop to test all variations of
 
 	# #Unit Test for Dijkstra's Algorithm
-	# for node in set(Graph.verticies):
-	# 	for vertex in set(Graph.verticies):
+	# for node in set(Graph.vertices):
+	# 	for vertex in set(Graph.vertices):
 	# 		print('From: {0}, To: {1}'.format(node, vertex), (short_path(Graph, node, vertex)))
