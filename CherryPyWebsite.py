@@ -51,7 +51,6 @@ class home():
 
 	@cherrypy.expose
 	def ecBuildingNav(self, start=None, end=None):
-		print(">{0}<, >{1}<".format(start, end))
 		if start is None or end is None:
 			return open("ecBuildingNav.html")
 		elif start is "" or end is "":
@@ -59,12 +58,11 @@ class home():
 		else:
 			try:
 				edges = Pathfinding.Database.get_edges(Pathfinding.Database())
-				verticies = Pathfinding.Database.get_verticies(
-					Pathfinding.Database())
+				vertices = Pathfinding.Database.get_vertices(Pathfinding.Database())
 				graph = Pathfinding.Graph()
 				for edge in edges:
 					graph.add_edge(edge[0], edge[1], edge[2])
-				for vertex in verticies:
+				for vertex in vertices:
 					graph.add_vertex(vertex)
 
 				path, distance = Pathfinding.short_path(graph, start, end)

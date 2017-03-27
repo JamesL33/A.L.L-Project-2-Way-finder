@@ -70,7 +70,7 @@ class Database:
 	def add_vertex(self, vertex):
 		''' Adds 'vertex' to the 'vertices' table in the database '''
 
-		self.cursor.execute(('INSERT INTO vertices VALUES (?)'), (vertex,))
+		self.cursor.execute(('INSERT INTO Vertices VALUES (?)'), (vertex,))
 		self.connection.commit()
 
 	def add_edge(self, edge):
@@ -102,7 +102,7 @@ class Database:
 
 		vertices = []
 
-		self.cursor.execute('SELECT * FROM vertices')
+		self.cursor.execute('SELECT * FROM Vertices')
 
 		while True:
 			vertex = self.cursor.fetchone()
@@ -220,9 +220,9 @@ def short_path(graph, start, end):
 	# for vertex in vertices:
 	# 	Graph.add_vertex(vertex)
 
-	# Unit testing loop to test all variations of
+	#Unit testing loop to test all variations of
 
-	# #Unit Test for Dijkstra's Algorithm
+	#Unit Test for Dijkstra's Algorithm
 	# for node in set(Graph.vertices):
 	# 	for vertex in set(Graph.vertices):
 	# 		print('From: {0}, To: {1}'.format(node, vertex), (short_path(Graph, node, vertex)))
