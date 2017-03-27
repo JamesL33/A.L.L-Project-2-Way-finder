@@ -62,16 +62,24 @@
 
     GMaps.geolocate({
     	success: function(position) {
-          var myLat = position.coords.latitude;
-          var myLong = position.coords.longitude;
+        var myLat = position.coords.latitude;
+        var myLong = position.coords.longitude;
 
-          var map = new GMaps({
-            el: '#map',
-            lat: myLat, 
-            lng: myLong,
-            zoom: 17,
+        var map = new GMaps({
+        	el: '#map',
+        	lat: myLat, 
+        	lng: myLong,
+        	zoom: 17,
 			disableDefaultUI: true
-          });        
+        });  
+
+        var counter = 0;
+        for(index in locations)
+        {
+        	var new_marker = Object.keys(locations)[counter].split(" ")
+        	createMarker(new_marker[0], new_marker[1], map, locations[Object.keys(locations)[counter]]);
+        	counter += 1;        	
+        }      
 
         $('#start_travel').click(function(e){
 
@@ -90,6 +98,8 @@
         	counter += 1;        	
         }
 
+
+
         $('#list_of_directions').empty();
         	var current_location = document.getElementById("list1");
         	var destination = document.getElementById("list2");
@@ -99,6 +109,7 @@
     		if(location == "") //if you select my GPS location
     		{
     			location = [myLat, myLong]
+    			createMarker(myLat, myLong, map, "You are here!")
     		}
 
         	e.preventDefault();

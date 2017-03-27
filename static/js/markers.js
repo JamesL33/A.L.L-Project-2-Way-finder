@@ -30,6 +30,7 @@ var locations = {
 	"52.406799 -1.504689" : "Ellen Terry",
 	"52.407812 -1.504942" : "George Eliot",
 	"52.407231 -1.502662" : "Graham Sutherland",
+	"52.407283 -1.504535" : "Hub",
 	"52.406683 -1.501497" : "Jaguar",
 	"52.407626 -1.503872" : "James Starley",
 	"52.406062 -1.501317" : "Library",
@@ -41,7 +42,6 @@ var locations = {
 	"52.407121 -1.499938" : "Sir William Lyons",
 	"52.406091 -1.503946" : "Sports and Recreation Centre",
 	"52.404736 -1.500288" : "Student Centre",
-	"52.407283 -1.504535" : "The Hub",
 	"52.405411 -1.501189" : "Whitefriars",
 	"52.406431 -1.501569" : "William Morris"
 };
