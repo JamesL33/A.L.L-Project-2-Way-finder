@@ -114,6 +114,7 @@ class Database:
 
 def dijkstra(graph, start_node):
 	'''
+	# Influenced by http://alexhwoods.com/dijkstra/
 	Method variables:
 		visited
 		Type: set
@@ -224,3 +225,14 @@ def short_path(graph, start, end):
 	# for node in set(Graph.vertices):
 	# 	for vertex in set(Graph.vertices):
 	# 		print('From: {0}, To: {1}'.format(node, vertex), (short_path(Graph, node, vertex)))
+
+	############################## Graph Stored in the database #################
+
+	# Vertices: {'Main Entrance', 'ECG-13', 'ECG-14', 'First Floor Stairs', 'ECG-27', 'ECG-15'}
+
+	# Edges: defaultdict(<class 'list'>, {'Main Entrance': ['ECG-15', 'ECG-27', 'First Floor Stairs'], 'ECG-14': ['ECG-13', 'ECG-15'], 'First Floor Stairs': ['ECG-15', 'ECG-27', 'Main Entrance'],
+	# 'ECG-13': ['ECG-14', 'ECG-15'], 'ECG-27': ['Main Entrance', 'First Floor Stairs'], 'ECG-15': ['ECG-13', 'ECG-14', 'Main Entrance', 'First Floor Stairs']})
+
+	# Weights: {('ECG-13', 'ECG-14'): 2, ('ECG-15', 'Main Entrance'): 5, ('ECG-14', 'ECG-15'): 1, ('First Floor Stairs', 'ECG-27'): 4, ('ECG-15', 'First Floor Stairs'): 2, 
+	# ('ECG-27', 'First Floor Stairs'): 4, ('ECG-15', 'ECG-14'): 1, ('ECG-14', 'ECG-13'): 2, ('First Floor Stairs', 'ECG-15'): 2, ('ECG-13', 'ECG-15'): 4, 
+	# ('First Floor Stairs', 'Main Entrance'): 3, ('ECG-27', 'Main Entrance'): 1, ('Main Entrance', 'ECG-15'): 5, ('ECG-15', 'ECG-13'): 4, ('Main Entrance', 'First Floor Stairs'): 3, ('Main Entrance', 'ECG-27'): 1}
