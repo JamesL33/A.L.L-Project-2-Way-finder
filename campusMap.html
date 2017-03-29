@@ -22,24 +22,22 @@
 					<a href="admin"><em class=""></em><span>Administration</span></a> <br><br>
                   
                    <center><form action="campusMap">
-							<table>
-								<tbody><tr><th align="center"><font color = "white">From: </font></th><td>
-									<select id="list1">
-										<option value="">My current GPS location</option>
-									</select>
-                  					<br><br>
-									</td></tr><tr><th><font color = "white">To: </font></th><td>
-									<select id="list2">
-									</select>
+						<table>
+							<tbody><tr><th align="center"><font color = "white">From: </font></th><td>
+							<br>
+								<select id="list1">
+									<option value="">My current GPS location</option>
+								</select><br><br>
+								</td></tr><tr><th><font color = "white">To: </font></th><td>
+								<select id="list2">
+								</select>
 								</td></tr>
                                 </tbody></table>
-                                <br><br>
-
+                                <br>
+                            	<br>
 							<a href="#" id="start_travel" class="test-box"><font color = "black">GO</font></a>
-                            </form></center>  
-                            </form></center>
-
-                  
+                        </form></center>  
+                    </form></center>                  
               </div>
           </nav>
       <button class="close-button" id="close-button"></button>
@@ -53,19 +51,26 @@
   </div>
   <script>
 
-  	var list1 = document.getElementById('list1'); //This gets the current selection
-  	var list2 = document.getElementById('list2'); 
-  	for(index in locations) 
+	//List1 and List2 can be editied via these variables
+  	var list1 = document.getElementById('list1');
+  	var list2 = document.getElementById('list2');
+
+  	//Goes through every location and places them inside the drop down boxes.
+  	for(index in locations)
   	{
     	list1.options[list1.options.length] = new Option(locations[index], index);
     	list2.options[list2.options.length] = new Option(locations[index], index);
 	}
 
+	//Using the GMAPS.js inbuilt geolocation tool
     GMaps.geolocate({
+    	//If successful then this function will run with your current lat/long
     	success: function(position) {
+    		//Storing users lat/long
         	var myLat = position.coords.latitude;
         	var myLong = position.coords.longitude;
-	
+			
+			//creates a new map with GMAPS
         	var map = new GMaps({
         		el: '#map',
         		lat: myLat, 
@@ -100,34 +105,35 @@
         		}
 	
         		$('#list_of_directions').empty();
-        			var current_location = document.getElementById("list1");
-        			var destination = document.getElementById("list2");
-    				var location = current_location.options[current_location.selectedIndex].value.split(" ");
-    				var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
-					
-    				if(location == "") //if you select my GPS location
-    				{
-    					location = [myLat, myLong]
-    					createMarker(myLat, myLong, map, "You are here!")
-    				}
-					
-        			e.preventDefault();
-        			map.travelRoute({
-        		  		origin: location,
-        		  		destination: selectedDestination,
-        		  		travelMode: 'walking',  
-        		  		step: function(e){
-        		    		$('#list_of_directions').append('<li>'+e.instructions+'</li>');
-        		    		$('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
-        		        	map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
-        		        	map.drawPolyline({
-        		            	path: e.path,
-        		  	        	strokeColor: '#0033cc',
-        		  	        	strokeOpacity: 0.4,
-        		  	        	strokeWeight: 6
-        		        	});
-        		        });
-        		    }
+        		
+        		var current_location = document.getElementById("list1");
+        		var destination = document.getElementById("list2");
+    			var location = current_location.options[current_location.selectedIndex].value.split(" ");
+    			var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
+				
+    			if(location == "") //if you select my GPS location
+    			{
+    				location = [myLat, myLong]
+    				createMarker(myLat, myLong, map, "You are here!")
+    			}
+				
+        		e.preventDefault();
+        		map.travelRoute({
+        		  	origin: location,
+        		  	destination: selectedDestination,
+        		  	travelMode: 'walking',  
+        		  	step: function(e){
+        		   		$('#list_of_directions').append('<li>'+e.instructions+'</li>');
+        		   		$('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
+        		       		map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
+        		       		map.drawPolyline({
+        		           		path: e.path,
+        		          		strokeColor: '#0033cc',
+        		          		strokeOpacity: 0.4,
+        		          		strokeWeight: 6
+        		       		});
+        		       	});
+        		   	}
         		});            	     	
         	});
       	},
