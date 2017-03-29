@@ -52,8 +52,9 @@
   	<ol class="centering" id="list_of_directions"></ol>    
   </div>
   <script>
-  	var list1 = document.getElementById('list1');
-  	var list2 = document.getElementById('list2');
+
+  	var list1 = document.getElementById('list1'); //This gets the current selection
+  	var list2 = document.getElementById('list2'); 
   	for(index in locations) 
   	{
     	list1.options[list1.options.length] = new Option(locations[index], index);
@@ -84,52 +85,50 @@
         $('#start_travel').click(function(e){
 
         	var map = new GMaps({
-            el: '#map',
-            lat: myLat, 
-            lng: myLong,
-            zoom: 17,
-			disableDefaultUI: true
-          });
-        var counter = 0;
-        for(index in locations)
-        {
-        	var new_marker = Object.keys(locations)[counter].split(" ")
-        	createMarker(new_marker[0], new_marker[1], map, locations[Object.keys(locations)[counter]]);
-        	counter += 1;        	
-        }
+            	el: '#map',
+            	lat: myLat, 
+            	lng: myLong,
+            	zoom: 17,
+				disableDefaultUI: true
+        	});
+        	var counter = 0;
+        	for(index in locations)
+        	{
+        		var new_marker = Object.keys(locations)[counter].split(" ")
+        		createMarker(new_marker[0], new_marker[1], map, locations[Object.keys(locations)[counter]]);
+        		counter += 1;        	
+        	}
 
-
-
-        $('#list_of_directions').empty();
-        	var current_location = document.getElementById("list1");
-        	var destination = document.getElementById("list2");
-    		var location = current_location.options[current_location.selectedIndex].value.split(" ");
-    		var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
-
-    		if(location == "") //if you select my GPS location
-    		{
-    			location = [myLat, myLong]
-    			createMarker(myLat, myLong, map, "You are here!")
-    		}
-
-        	e.preventDefault();
-        	map.travelRoute({
-          	 origin: location,
-          	 destination: selectedDestination,
-          	 travelMode: 'walking',  
-          	 step: function(e){
-                $('#list_of_directions').append('<li>'+e.instructions+'</li>');
-                $('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
-                  map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
-                  map.drawPolyline({
-                    path: e.path,
-          	        strokeColor: '#0033cc',
-          	        strokeOpacity: 0.4,
-          	        strokeWeight: 6
-                  });
-                });
-              }
-          	});            	     	
+        	$('#list_of_directions').empty();
+        		var current_location = document.getElementById("list1");
+        		var destination = document.getElementById("list2");
+    			var location = current_location.options[current_location.selectedIndex].value.split(" ");
+    			var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
+				
+    			if(location == "") //if you select my GPS location
+    			{
+    				location = [myLat, myLong]
+    				createMarker(myLat, myLong, map, "You are here!")
+    			}
+				
+        		e.preventDefault();
+        		map.travelRoute({
+        	  	 origin: location,
+        	  	 destination: selectedDestination,
+        	  	 travelMode: 'walking',  
+        	  	 step: function(e){
+        	        $('#list_of_directions').append('<li>'+e.instructions+'</li>');
+        	        $('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
+        	          map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
+        	          map.drawPolyline({
+        	            path: e.path,
+        	  	        strokeColor: '#0033cc',
+        	  	        strokeOpacity: 0.4,
+        	  	        strokeWeight: 6
+        	          });
+        	        });
+        	      }
+        	  	});            	     	
         });
       },
       error: function(error) {
