@@ -23,11 +23,13 @@
 				<div class="content-wrap">
 					<div class="content">
 						<header class="codrops-header">
+                        <!--Login form - Data is passed through security.py to be hashed and returns you to the main page if the details are correct,<br>
+							otherwise redirects to adminFailLogin-->
 							<b>Administation Page</b><br><br>
 							<form action="" method="post">
 								<div style = "text-align:center; margin-right:4px;" >Username: <input type="text" name="username"><br></div><br>
 								<div class = ""><center>Password: <input type="password" name="userpassword"><br></center></div><br><br>
-								<div class = ""><input type="submit" value="Submit"></div>
+								<div class = ""><input type="submit" class = "test-box" value="Submit"></div>
 							</form>
 						</header>
 					</div>
