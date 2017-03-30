@@ -70,7 +70,7 @@ button:focus {
 }
 
 /* Button Styles */
-.codrops-demos {
+.codrops-buttons {
 	font-size: 1em;
 	max-width: 1200px;
 	margin: 3em auto 5em;
@@ -80,7 +80,7 @@ button:focus {
 	padding-bottom: 1em;
 }
 
-.codrops-demos > a {
+.codrops-buttons > a {
 	display: inline-block;
 	margin: 0.75em;
 	padding: 1.35em 1.1em;
@@ -94,7 +94,7 @@ button:focus {
 	border-radius: 20px/50px;
 }
 
-.codrops-demos > a.current-demo {
+.codrops-buttons > a.current-demo {
 	background: #c94e50;
 	color: #fffce1;
 }
@@ -317,7 +317,7 @@ body,
 	.codrops-header h1 {
 		font-size: 2.5em;
 	}
-	.codrops-demos {
+	.codrops-buttons {
 		max-width: 900px;
 		padding: 2em 2em 0;
 	}
