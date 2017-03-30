@@ -58,14 +58,16 @@ class home():
             try:
                 edges = Pathfinding.Database.get_edges(Pathfinding.Database())
                 vertices = Pathfinding.Database.get_vertices(Pathfinding.Database())
-                graph = Pathfinding.Graph()
+                graph = Pathfinding.Graph() # Create graph object
+                # Populate graph with nodes from the database
                 for edge in edges:
                     graph.add_edge(edge[0], edge[1], edge[2])
                 for vertex in vertices:
                     graph.add_vertex(vertex)
 
-                path, distance = Pathfinding.short_path(graph, start, end)
+                path, distance = Pathfinding.short_path(graph, start, end) # Use dijstras alg to find the shorted path and distance
 
+                # Use dominate to create a HTML page with a list populated with the path and distance
                 doc = dominate.document(title='Indoor Navigation')
                 with doc.head:
                     link(rel='stylesheet', type='text/css',
@@ -80,6 +82,7 @@ class home():
                         attr(cls='body')
                         p("The cost of this journey is {0}".format(distance))
 
+                # Return the HTML page. Cherrpy then displays this page
                 return str(doc)
 
             except TypeError as e:
