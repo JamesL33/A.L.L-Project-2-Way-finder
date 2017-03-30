@@ -50,6 +50,11 @@
   	<ol class="centering" id="list_of_directions"></ol>    
   </div>
   <script>
+  	/*
+	This script uses gmaps.js and its examples from this website here:
+	https://hpneo.github.io/gmaps/
+	https://hpneo.github.io/gmaps/examples/routes_advanced.html
+  	*/
 
 	//List1 and List2 can be editied via these variables
   	var list1 = document.getElementById('list1');
@@ -63,9 +68,10 @@
 	}
 
 	//Using the GMAPS.js inbuilt geolocation tool
-    GMaps.geolocate({
-    	//If successful then this function will run with your current lat/long
-    	success: function(position) {
+	GMaps.geolocate({
+
+		//If successful then this function will run with your current lat/long
+		success: function(position) {
     		//Storing users lat/long
         	var myLat = position.coords.latitude;
         	var myLong = position.coords.longitude;
@@ -77,18 +83,21 @@
         		lng: myLong,
         		zoom: 17,
 				disableDefaultUI: true
-        	});  
-	
+        	});
+
+			//This iterates over the locations and adds a marker for each.
         	var counter = 0;
         	for(index in locations)
         	{
-        		var new_marker = Object.keys(locations)[counter].split(" ")
+        		var new_marker = Object.keys(locations)[counter].split(" ");
         		createMarker(new_marker[0], new_marker[1], map, locations[Object.keys(locations)[counter]]);
-        		counter += 1;        	
-        	}      
-	
+        		counter += 1;
+        	}
+
+			//JQuery used to link the button to this function
         	$('#start_travel').click(function(e){
-	
+
+				//creates a new map with GMAPS
         		var map = new GMaps({
         	    	el: '#map',
         	    	lat: myLat, 
@@ -96,6 +105,8 @@
         	    	zoom: 17,
 					disableDefaultUI: true
         		});
+
+        		//This iterates over the locations and adds a marker for each.
         		var counter = 0;
         		for(index in locations)
         		{
@@ -103,7 +114,7 @@
         			createMarker(new_marker[0], new_marker[1], map, locations[Object.keys(locations)[counter]]);
         			counter += 1;        	
         		}
-	
+        		//
         		$('#list_of_directions').empty();
         		
         		var current_location = document.getElementById("list1");
