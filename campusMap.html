@@ -29,7 +29,7 @@
 									<option value="">My current GPS location</option>
 								</select><br><br>
 								</td></tr><tr><th><font color = "white">To: </font></th><td>
-								<select id="list2">
+								<select id="location_list_2">
 								</select>
 								</td></tr>
                                 </tbody></table>
@@ -54,17 +54,21 @@
 	This script uses gmaps.js and its examples from this website here:
 	https://hpneo.github.io/gmaps/
 	https://hpneo.github.io/gmaps/examples/routes_advanced.html
+
+	Originally google maps api was used but it was easier to use a 
+	premade google maps library that simplifed the code written.
+	It still needed lots of tweaking to get the desired results.
   	*/
 
 	//List1 and List2 can be editied via these variables
 	var location_list_1 = document.getElementById('location_list_1');
-	var list2 = document.getElementById('list2');
+	var location_list_2 = document.getElementById('location_list_2');
 
   	//Goes through every location and places them inside the drop down boxes.
 	for(index in locations)
 	{
 		location_list_1.options[location_list_1.options.length] = new Option(locations[index], index);
-		list2.options[list2.options.length] = new Option(locations[index], index);
+		location_list_2.options[location_list_2.options.length] = new Option(locations[index], index);
 	}
 
 	//Using the GMAPS.js inbuilt geolocation tool
@@ -118,28 +122,33 @@
 				//Clears the list of instructions
 				$('#list_of_directions').empty();
 
-
+				//Stores the current dropdown list values
 				var current_location = document.getElementById("location_list_1");
-				var destination = document.getElementById("list2");
+				var destination = document.getElementById("location_list_2");
 				var location = current_location.options[current_location.selectedIndex].value.split(" ");
 				var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
 				
-				//If it is blank, this means use the GPS location
+				//If location is blank, this means use the GPS location of the user.
 				if(location == "")
 				{
 					location = [myLat, myLong]
 					createMarker(myLat, myLong, map, "You are here!")
 				}
 				
+
 				e.preventDefault();
+				//This is a GMAPS function to travel the route
 				map.travelRoute({
 					origin: location,
 					destination: selectedDestination,
 					travelMode: 'walking',  
-					step: function(e){
-						$('#list_of_directions').append('<li>'+e.instructions+'</li>');
-						$('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
+					step: function(e){ //For every step the infromation is stored in 'e'
+						$('#list_of_directions').append('<li>'+e.instructions+'</li>'); //Append the instruction using JQuery
+						//This takes each step and makes it aestheticly pleasing by making the map follow each road as it travels.
+						$('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){ 
+							//Centers the map for the scren.
 							map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
+							//These polylines are drawn for each road traveled.
 							map.drawPolyline({
 								path: e.path,
 								strokeColor: '#0033cc',
@@ -151,6 +160,7 @@
 				});
 			});
 		},
+		//Below are error message for if the geolocation fails.
 		error: function(error) {
 		alert('Geolocation failed: '+error.message);
 		},

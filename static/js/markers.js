@@ -1,5 +1,7 @@
+//This function creates a marker at a specific lat/long.
 function createMarker(lat, long, map, info)
 {
+	//This takes the map given and adds a marker with the data provided
 	map.addMarker({
  		icon: "http://maps.google.com/mapfiles/ms/micons/blue-dot.png",
  		lat: lat,
@@ -20,6 +22,8 @@ function createMarker(lat, long, map, info)
 	});
 }
 
+//Object to hold the locations and names of all the buildings
+//This was going to be a database, but a decision was made to do it this way.
 var locations = {
 	"52.408141 -1.506584" : "Alan Berry",
 	"52.410193 -1.500576" : "Alma",
