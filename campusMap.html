@@ -25,7 +25,7 @@
 						<table>
 							<tbody><tr><th align="center"><font color = "white">From: </font></th><td>
 							<br>
-								<select id="list1">
+								<select id="location_list_1">
 									<option value="">My current GPS location</option>
 								</select><br><br>
 								</td></tr><tr><th><font color = "white">To: </font></th><td>
@@ -57,14 +57,14 @@
   	*/
 
 	//List1 and List2 can be editied via these variables
-  	var list1 = document.getElementById('list1');
-  	var list2 = document.getElementById('list2');
+	var location_list_1 = document.getElementById('location_list_1');
+	var list2 = document.getElementById('list2');
 
   	//Goes through every location and places them inside the drop down boxes.
-  	for(index in locations)
-  	{
-    	list1.options[list1.options.length] = new Option(locations[index], index);
-    	list2.options[list2.options.length] = new Option(locations[index], index);
+	for(index in locations)
+	{
+		location_list_1.options[location_list_1.options.length] = new Option(locations[index], index);
+		list2.options[list2.options.length] = new Option(locations[index], index);
 	}
 
 	//Using the GMAPS.js inbuilt geolocation tool
@@ -72,89 +72,92 @@
 
 		//If successful then this function will run with your current lat/long
 		success: function(position) {
-    		//Storing users lat/long
-        	var myLat = position.coords.latitude;
-        	var myLong = position.coords.longitude;
+			//Storing users lat/long
+			var myLat = position.coords.latitude;
+			var myLong = position.coords.longitude;
 			
 			//creates a new map with GMAPS
-        	var map = new GMaps({
-        		el: '#map',
-        		lat: myLat, 
-        		lng: myLong,
-        		zoom: 17,
+			var map = new GMaps({
+				el: '#map',
+				lat: myLat, 
+				lng: myLong,
+				zoom: 17,
 				disableDefaultUI: true
-        	});
+			});
 
 			//This iterates over the locations and adds a marker for each.
-        	var counter = 0;
-        	for(index in locations)
-        	{
-        		var new_marker = Object.keys(locations)[counter].split(" ");
-        		createMarker(new_marker[0], new_marker[1], map, locations[Object.keys(locations)[counter]]);
-        		counter += 1;
-        	}
+			var counter = 0;
+			for(index in locations)
+			{
+				var new_marker = Object.keys(locations)[counter].split(" ");
+				createMarker(new_marker[0], new_marker[1], map, locations[Object.keys(locations)[counter]]);
+				counter += 1;
+			}
 
 			//JQuery used to link the button to this function
-        	$('#start_travel').click(function(e){
+			$('#start_travel').click(function(e){
 
 				//creates a new map with GMAPS
-        		var map = new GMaps({
-        	    	el: '#map',
-        	    	lat: myLat, 
-        	    	lng: myLong,
-        	    	zoom: 17,
+				var map = new GMaps({
+					el: '#map',
+					lat: myLat, 
+					lng: myLong,
+					zoom: 17,
 					disableDefaultUI: true
-        		});
+				});
 
-        		//This iterates over the locations and adds a marker for each.
-        		var counter = 0;
-        		for(index in locations)
-        		{
-        			var new_marker = Object.keys(locations)[counter].split(" ")
-        			createMarker(new_marker[0], new_marker[1], map, locations[Object.keys(locations)[counter]]);
-        			counter += 1;        	
-        		}
-        		//
-        		$('#list_of_directions').empty();
-        		
-        		var current_location = document.getElementById("list1");
-        		var destination = document.getElementById("list2");
-    			var location = current_location.options[current_location.selectedIndex].value.split(" ");
-    			var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
+				//This iterates over the locations and adds a marker for each.
+				var counter = 0;
+				for(index in locations)
+				{
+					var new_marker = Object.keys(locations)[counter].split(" ")
+					createMarker(new_marker[0], new_marker[1], map, locations[Object.keys(locations)[counter]]);
+					counter += 1;        	
+				}
+
+				//Clears the list of instructions
+				$('#list_of_directions').empty();
+
+
+				var current_location = document.getElementById("location_list_1");
+				var destination = document.getElementById("list2");
+				var location = current_location.options[current_location.selectedIndex].value.split(" ");
+				var selectedDestination = destination.options[destination.selectedIndex].value.split(" ");
 				
-    			if(location == "") //if you select my GPS location
-    			{
-    				location = [myLat, myLong]
-    				createMarker(myLat, myLong, map, "You are here!")
-    			}
+				//If it is blank, this means use the GPS location
+				if(location == "")
+				{
+					location = [myLat, myLong]
+					createMarker(myLat, myLong, map, "You are here!")
+				}
 				
-        		e.preventDefault();
-        		map.travelRoute({
-        		  	origin: location,
-        		  	destination: selectedDestination,
-        		  	travelMode: 'walking',  
-        		  	step: function(e){
-        		   		$('#list_of_directions').append('<li>'+e.instructions+'</li>');
-        		   		$('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
-        		       		map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
-        		       		map.drawPolyline({
-        		           		path: e.path,
-        		          		strokeColor: '#0033cc',
-        		          		strokeOpacity: 0.4,
-        		          		strokeWeight: 6
-        		       		});
-        		       	});
-        		   	}
-        		});            	     	
-        	});
-      	},
-      	error: function(error) {
-        alert('Geolocation failed: '+error.message);
-      	},
-      	not_supported: function() {
-        alert("Your browser does not support geolocation");
-      	}
-    });
+				e.preventDefault();
+				map.travelRoute({
+					origin: location,
+					destination: selectedDestination,
+					travelMode: 'walking',  
+					step: function(e){
+						$('#list_of_directions').append('<li>'+e.instructions+'</li>');
+						$('#list_of_directions li:eq('+e.step_number+')').delay(450*e.step_number).fadeIn(200, function(){
+							map.setCenter(e.end_location.lat()+0.00110, e.end_location.lng());
+							map.drawPolyline({
+								path: e.path,
+								strokeColor: '#0033cc',
+								strokeOpacity: 0.4,
+								strokeWeight: 6
+							});
+						});
+					}
+				});
+			});
+		},
+		error: function(error) {
+		alert('Geolocation failed: '+error.message);
+		},
+		not_supported: function() {
+		alert("Your browser does not support geolocation");
+		}
+	});
   </script>
 </body>
 </html>
